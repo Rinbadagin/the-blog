@@ -1,4 +1,4 @@
-<%= form_with model: article do |form| %>
+<%= form_with model: article, id: "content" do |form| %>
   <div>
   <%= form.label :title %><br>
   <%= form.text_field :title %>
@@ -9,7 +9,7 @@
 
   <div>
   <%= form.label :body %><br>
-  <%= form.text_field :body %>
+  <%= form.text_area :body, class: "article-body" %>
   <% article.errors.full_messages_for(:body).each do |message| %>
     <div><%= message %></div>
   <% end %>

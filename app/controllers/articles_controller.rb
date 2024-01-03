@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   
 
   def index
-    @articles = Article.all 
+    @index_article = Article.find(1)
   end
 
   def show
