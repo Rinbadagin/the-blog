@@ -1,0 +1,67 @@
+<div id="sidebar">
+</div>
+
+<script>
+let articles = <%= raw(articles.to_json) %>;
+let sidebar = document.getElementById("sidebar");
+
+function formatArticles(articles) {
+  const nestedList = [];
+
+  articles.forEach(article => {
+    const titleParts = article.title.split('/');
+    let currentLevel = nestedList;
+
+    titleParts.forEach((part, index) => {
+      const existingNode = currentLevel.find(node => node.title === part);
+
+      if (existingNode) {
+        // Node already exists, move to its children
+        currentLevel = existingNode.children;
+      } else {
+        // Create a new node
+        const newNode = { title: part, children: [] };
+        currentLevel.push(newNode);
+        currentLevel = newNode.children;
+      }
+
+      // If it's the last part of the title, add the original article to the leaf node
+      if (index === titleParts.length - 1) {
+        currentLevel.push({ title: article.title, id: article.id, children: [] });
+      }
+    });
+  });
+
+  return nestedList;
+}
+
+let formattedArticles = formatArticles(articles);
+
+  function renderFormattedArticle(article) {
+  if (article.children.length === 1) article = article.children[0]
+  let listContent = ""
+  if (article.children)
+  for (let i of article.children) {
+    if (i.children.length === 1)
+      listContent += renderFormattedArticle(i.children[0])
+    else
+      listContent += renderFormattedArticle(i)
+  }
+  if (listContent)
+    return `<li>${article.title} ${article.id}<ul>${listContent}</ul></li>`
+  if (!listContent)
+    return `<li>${article.title} ${article.id}</li>` 
+}
+
+
+window.addEventListener('load', () => {
+let listContent = ""
+
+for (let i of formattedArticles) {
+  listContent += renderFormattedArticle(i)
+}
+
+listContent = `<ul>${listContent}</ul>`;
+    sidebar.innerHTML = listContent;
+})
+</script>
