@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: "todo replace with env", password: "not a real password", except: %i[index show]
+  http_basic_authenticate_with name: ENV['ARTICLE_USER'], password: ENV['ARTICLE_PASS'], except: %i[index show]
   before_action :set_sidebar_data
   
 
