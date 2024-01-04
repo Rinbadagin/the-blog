@@ -16,7 +16,7 @@ module ArticlesHelper
         html_content += "<h1>#{line.delete_prefix "#"}</h1>"
       elsif line.starts_with? "*"
         html_content += "<ul><li>#{line.delete_prefix "*"}</li></ul>"
-      else html_content += "<p>#{line}</p>"
+      else html_content += "<br><p>#{line}</p>"
       end
     end
     return html_content
@@ -25,7 +25,17 @@ module ArticlesHelper
   def sidebar_tree_html(article_list)
     content = ""
     article_list.each do |article|
-      content += "<li>#{link_to article.title, article}</li>"
+      # Explicit handling of article id 1 should probably not happen - why is this a special case?
+      # ID 1 is the index post - perhaps we could handle this differently in the future?
+      if article.id != 1
+        if article.title.starts_with? "Special/"
+          content += "<li>#{link_to article.title.delete_prefix("Special/"), article}</li>"
+        else
+          content += "<li>#{link_to article.title, article}</li>"
+        end
+      else 
+        content += "<li>#{link_to article.title.delete_prefix("Special/"), root_path}</li>"
+      end
     end
     return "<ul>#{content}</ul>"
   end

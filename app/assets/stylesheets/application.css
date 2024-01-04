@@ -16,7 +16,7 @@
 
 @font-face {
 	font-family: 'opendyslexic';
-		src: url('/OpenDyslexic-Regular.otf');
+		src: url('OpenDyslexic-Regular.otf');
 		font-style: normal;
 		font-weight:normal;
 }
@@ -31,21 +31,25 @@
 	border-bottom: 3px double black;
 	text-align: center;
 	position: relative;
+	height: 105px;
 }
 #page {
 	display: flex;
 }
 #sidebar {
-	width: max(20vh, 150px);
 	border-right: 3px double black;
 	padding: 1em;
 }
 #sidebar a {
 	text-decoration: none;
 }
+div.border {
+	border-bottom: 3px double black;
+}
+
 #content {
-	flex: 1 0 auto;
 	margin: 6px;
+	width: 100%;
 }
 #footer {
 	position: fixed;
@@ -61,13 +65,13 @@ a {
 	font-weight: 800;
 }
 a:link {
-	color: brown;
+	color: darkgreen;
 }
 a:visited {
 	color: darkgreen;
 }
 a:hover {
-	color: brown;
+	color: rgb(38, 21, 21);
 }
 a:active {
 	color: black;
@@ -83,4 +87,9 @@ a:active {
 textarea.article-body {
 	width: 100%;
 	height: 5em;
+}
+
+input, textarea {
+	border-radius: 4px;
+	border: 1px solid black;
 }
