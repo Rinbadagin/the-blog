@@ -98,7 +98,7 @@ a:active {
 
 textarea.article-body {
 	width: 100%;
-	height: 5em;
+	height: calc(100vh - 300px);
 }
 
 input, textarea {
