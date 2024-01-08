@@ -50,8 +50,10 @@
           content += `<ul><li>${i.slice(1)}</li></ul>`
         else if (i.startsWith("_"))
           content += `<p>${i.slice(1)}</p><div class="border"></div>`
+        else if (i == "")
+          content += "<br>"
         else
-        content += `<p>${i}</p>`
+          content += `<p>${i}</p>`
       }
       bodyPreview.innerHTML = content
       titlePreview.innerHTML = titleInput.value

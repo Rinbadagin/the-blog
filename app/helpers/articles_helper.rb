@@ -18,7 +18,9 @@ module ArticlesHelper
         html_content += "<ul><li>#{line.delete_prefix "*"}</li></ul>"
       elsif line.starts_with? "_"
         html_content += "<p>#{line.delete_prefix "_"}</p><div class='border'></div>"
-      else html_content += "<br><p>#{line}</p>"
+      elsif line.equal? ""
+        html_content += "<br>"
+      else html_content += "<p>#{line}</p>"
       end
     end
     return html_content
