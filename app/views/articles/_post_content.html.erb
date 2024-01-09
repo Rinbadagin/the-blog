@@ -1,5 +1,5 @@
 <div id="content">
-  <h2><%= article.title %></h2>
+  <h2><%= article.title.split("/")[-1] %></h2>
   <p>
     <%= raw(process_body(article)) %>
   </p>
