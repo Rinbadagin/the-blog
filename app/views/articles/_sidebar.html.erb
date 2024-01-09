@@ -1,8 +1,7 @@
 <div id="sidebar">
   <%= 
-    raw(sidebar_tree_html(Article.order(:title).all))
+    raw(generate_tree_from_article_list(Article.order(:title).all))
   %>
-  <ul>
     <div class="border"></div>
       <!--<% if article.id != 1%>
       <li> <%= link_to "Home", root_path %> </li>
@@ -17,5 +16,4 @@
 
     <li><%= link_to "New Article", new_article_path %></li>
       <% end %>
-  </ul>
 </div>

@@ -26,21 +26,14 @@ module ArticlesHelper
     return html_content
   end
 
-  def sidebar_tree_html(article_list)
-    content = ""
+  def generate_tree_from_article_list(article_list)
+    root = ArticleNode.new(nil)
     article_list.each do |article|
-      # Explicit handling of article id 1 should probably not happen - why is this a special case?
-      # ID 1 is the index post - perhaps we could handle this differently in the future?
-      if article.id != 1
-        if article.title.starts_with? "Special/"
-          content += "<li>#{link_to article.title.delete_prefix("Special/"), article}</li>"
-        else
-          content += "<li>#{link_to article.title, article}</li>"
-        end
-      else 
-        content += "<li>#{link_to article.title.delete_prefix("Special/"), root_path}</li>"
-      end
+      list = article.title.split("/")
+      # root.add_child(ArticleNode.new(list[-1], link_to(list[-1], article_path(article)), article), list)
+      root.add_child(ArticleNode.new(list[-1], link_to(list[-1], article_path(article)), article), list)
     end
-    return "<ul>#{content}</ul>"
+
+    return root.render_html
   end
 end
