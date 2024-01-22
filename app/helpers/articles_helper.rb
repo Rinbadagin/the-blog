@@ -26,12 +26,16 @@ module ArticlesHelper
     return html_content
   end
 
-  def generate_tree_from_article_list(article_list)
+  def generate_tree_from_article_list(article_list, current_article)
     root = ArticleNode.new(nil)
     article_list.each do |article|
       list = article.title.split("/")
-      # root.add_child(ArticleNode.new(list[-1], link_to(list[-1], article_path(article)), article), list)
-      root.add_child(ArticleNode.new(list[-1], link_to(list[-1], article_path(article)), article), list)
+      if (article == current_article)
+        link = link_to(list[-1], article_path(article), id: "current-article-link", article_id: article.id)
+      else
+        link = link_to(list[-1], article_path(article))
+      end
+      root.add_child(ArticleNode.new(list[-1], link, article), list)
     end
 
     return root.render_html

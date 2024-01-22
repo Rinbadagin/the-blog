@@ -1,6 +1,6 @@
 <div id="sidebar">
   <%= 
-    raw(generate_tree_from_article_list(Article.order(:title).all))
+    raw(generate_tree_from_article_list(Article.order(:title).all, article))
   %>
     <div class="border"></div>
       <!--<% if article.id != 1%>
@@ -16,4 +16,15 @@
 
     <li><%= link_to "New Article", new_article_path %></li>
       <% end %>
+
+  <script defer>
+    {
+      let current_article = document.getElementById("current-article-link")
+      let parentNode = current_article.parentNode
+      while (parentNode) {
+        parentNode.open = "true"
+        parentNode = parentNode.parentNode
+      }
+    }
+    </script>
 </div>
