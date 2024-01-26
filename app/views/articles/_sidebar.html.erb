@@ -10,10 +10,13 @@
                           turbo_method: :delete,
                           turbo_confirm: "Are you sure you want to delete this article (#{article.title})?"
                         } %></li>
-      <div class="border"></div>
     <% end %>
     <li><%= link_to "New Article", new_article_path %></li>
-    <li><%= link_to 'Log Out', logout_path, method: :post %></li>
+    <li><%= link_to "Uploads", uploads_path %></li>
+    <li><%= link_to 'Log Out', logout_path, data: {
+                          turbo_method: :get,
+                          turbo_confirm: "Are you sure you want to log out, #{current_user.name}?"
+                        } %></li>
   <% else %>
     <li><%= link_to 'Eliza Only', login_path %></li>
   <% end %>

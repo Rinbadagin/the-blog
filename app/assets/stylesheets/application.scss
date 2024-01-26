@@ -1,0 +1,233 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$main_highlight: green;
+$main_active: black;
+$main_highlight_support: darkgreen;
+$color_4: rgb(38, 21, 21);
+$hidden_article: gray;
+$hidden_article_message: red;
+$content_a: cornflowerblue;
+$global_font: "opendyslexic";
+$main_background: white;
+
+@font-face {
+  font-family: "opendyslexic";
+  src: url("OpenDyslexic-Regular.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+* {
+  font-family: $global_font;
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  color: $main_highlight;
+}
+#header {
+  border-bottom: 3px double black;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  marquee {
+    width: 94px;
+    height: 108px;
+  }
+  .logo-drawing {
+    width: 7em;
+  }
+}
+#page {
+  display: flex;
+}
+div.border {
+  border-bottom: 3px double black;
+}
+#content {
+  margin: 6px;
+  flex: 1 1 calc(100% - 400px);
+  color: $main_active;
+  position: relative;
+  padding-bottom: 25px;
+  h6 {
+    color: $main_highlight;
+  }
+  h5 {
+    color: $main_highlight;
+  }
+  h4 {
+    color: $main_highlight;
+  }
+  h3 {
+    color: $main_highlight;
+  }
+  h2 {
+    color: $main_highlight;
+  }
+  h1 {
+    color: $main_highlight;
+  }
+  .hidden-article-blurb {
+    color: $hidden_article_message;
+  }
+  a {
+    color: $content_a;
+  }
+
+  .datetime-footer {
+    position: absolute;
+    bottom: 0;
+    height: 25px;
+    clear: both;
+  }
+}
+#content-form {
+  margin: 6px;
+  flex: 3 1 50%;
+  textarea.article-body {
+    width: 100%;
+    height: calc(100vh - 300px);
+  }
+}
+#post-preview {
+  width: 50%;
+  margin: 6px;
+  flex: 3 1 auto;
+}
+#sidebar {
+  border-right: 3px double black;
+  padding: 1em;
+  max-width: 250px;
+  width: 25%;
+  a {
+    text-decoration: none;
+  }
+  summary {
+    cursor: pointer;
+  }
+  #current-article-link {
+    text-decoration: underline;
+  }
+  .hidden-article {
+    color: $hidden_article;
+  }
+  .hidden-section {
+    color: $hidden_article;
+  }
+  ul {
+    margin: 12px;
+  }
+  li {
+    margin: 12px;
+  }
+}
+a {
+  font-weight: 800;
+  &:link {
+    color: $main_highlight_support;
+  }
+  &:visited {
+    color: $main_highlight_support;
+  }
+  &:hover {
+    color: $color_4;
+  }
+  &:active {
+    color: $main_active;
+  }
+}
+
+input {
+  resize: vertical;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 4px;
+  margin: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 4px;
+  margin: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: $main_background;
+  color: $main_highlight_support;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.upload-index {
+  .new-upload {
+    margin: 8px;
+    a {
+      text-decoration: none;
+    }
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    margin-left: 12px;
+    .upload-blurb {
+      min-width: 150px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      margin: 8px;
+      padding: 8px;
+      margin-bottom: 25px;
+      border: 3px double black;
+      .destroy-link {
+        margin-top: 20px;
+      }
+      .title {
+        text-decoration: none;
+        margin-bottom: 20px;
+      }
+      .description {
+        font-style: italic;
+        min-height: 40px;
+        flex-grow: 1;
+      }
+      .image-content img {
+        width: 200px;
+        border: 3px double black;
+      }
+    }
+    ::after {
+      flex-grow: 100;
+    }
+  }
+}
+
+.link-button {
+  text-decoration: none;
+  font-weight: 400;
+  border: 1px solid green;
+  border-radius: 6px;
+  padding: 4px;
+  margin: 4px;
+}

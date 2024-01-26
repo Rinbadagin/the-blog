@@ -1,7 +1,23 @@
 module ArticlesHelper
   def process_body(article)
     html_content = ""
+    first_pass = ""
+    temp_content = ""
     article.body.each_line do |line|
+      if line.include?("![") && line.include?(']') && line.split("![")[1].split("]")[0]
+        #get content between first ![ and ]
+        up = Upload.find_by(title: line.split("![")[1].split("]")[0])
+        if up
+          url = url_for(Upload.find_by(title: line.split("![")[1].split("]")[0]).content)
+          temp_content = "#{line.split("![")[0]}#{url || "Couldn't find link" }#{line.split("]")[1..].join}"
+        else 
+          temp_content += "#{line.split("![")[0]}![Couldn't find link]#{line.split("]")[1..].join}"
+        end
+      else
+        temp_content += line
+      end
+    end
+    temp_content.each_line do |line|
       if line.starts_with? "######"
         html_content += "<h6>#{line.delete_prefix "######"}</h6>"
       elsif line.starts_with? "#####"

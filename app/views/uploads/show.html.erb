@@ -1,0 +1,13 @@
+<%= render "articles/header"%>
+<div id="page">
+  <%= render "articles/sidebar", article: nil %>
+  <div>
+    <%= @upload.title %>
+  </div>
+  <div>
+    <%= @upload.description %>
+  </div>
+  <div>
+    <img src="<%= url_for(@upload.content) %>"/>
+  </div>
+</div>

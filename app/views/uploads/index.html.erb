@@ -1,0 +1,37 @@
+<%= render "articles/header"%>
+<div id="page">
+  <%= render "articles/sidebar", article: nil %>
+  <div class="upload-index">
+    <div class="new-upload">
+      <%= link_to "New Upload", new_upload_path %>
+    </div>
+    <div class="container">
+      <% @uploads.each do |upload| %>
+        <div class="upload-blurb">
+          <div class="title">
+            ![<%= upload.title %>]
+          </div>
+          <% if !upload.content.image? %>
+            <div class="file-content">
+              <a href="<%= url_for(upload.content) %>" target="_blank">View/download</a>
+            </div>
+          <% end %>
+          <div class="description">
+            <%= upload.description %>
+          </div>
+          <% if upload.content.image? %>
+            <div class="image-content">
+              <img src="<%= url_for(upload.content) %>"/>
+            </div>
+          <% end %>
+          <div class="destroy-link">
+            <%= link_to "Destroy", upload_path(upload), data: {
+                          turbo_method: :delete,
+                          turbo_confirm: "Are you sure you want to delete this upload (#{upload.title})?"
+                        } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
