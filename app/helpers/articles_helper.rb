@@ -31,11 +31,21 @@ module ArticlesHelper
     article_list.each do |article|
       list = article.title.split("/")
       if (article == current_article)
-        link = link_to(list[-1], article_path(article), id: "current-article-link", article_id: article.id)
+        if !article.visibility
+          link = link_to(list[-1], article_path(article), id: "current-article-link", class: "hidden-article", article_id: article.id)
+        else
+          link = link_to(list[-1], article_path(article), id: "current-article-link", class: "visible-article", article_id: article.id)
+        end
       else
-        link = link_to(list[-1], article_path(article))
+        if !article.visibility
+          link = link_to(list[-1], article_path(article), class: "hidden-article", article_id: article.id)
+        else
+          link = link_to(list[-1], article_path(article), class: "visible-article", article_id: article.id)
+        end
       end
-      root.add_child(ArticleNode.new(list[-1], link, article), list)
+      if article.visibility || current_user
+        root.add_child(ArticleNode.new(list[-1], link, article), list)
+      end
     end
 
     return root.render_html

@@ -1,21 +1,24 @@
 <%= form_with model: article, id: "content-form" do |form| %>
   <div>
-  <%= form.label :title %><br>
-  <%= form.text_field :title, id: "article-title-input" %>
-  <% article.errors.full_messages_for(:title).each do |message| %>
-    <div><%= message %></div>
-  <% end %>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, id: "article-title-input" %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
 
   <div>
-  <%= form.label :body %><br>
-  <%= form.text_area :body, class: "article-body", id: "article-body-input" %>
-  <% article.errors.full_messages_for(:body).each do |message| %>
-    <div><%= message %></div>
-  <% end %>
-  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body, class: "article-body", id: "article-body-input" %>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= form.label :visibility %>
+    <%= form.check_box :visibility, class: "article-check-box", id: "article-check-box" %><br>
+    <% article.errors.full_messages_for(:visibility).each do |message| %>
+      <div><%= message %></div>
+    <% end %><br>
     <%= form.submit %>
-  </div>
 <% end %>
   </div>
   <div id="post-preview">

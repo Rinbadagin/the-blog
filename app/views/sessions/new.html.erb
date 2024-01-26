@@ -1,0 +1,20 @@
+<%= render "articles/header"%>
+<div id="page">
+  <%= render "articles/sidebar", article: nil %>
+  <%= form_for :login do |f| %>
+    <div>
+      <%= f.label :name %><br>
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    <div>
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
+    </div>
+    <div class="error-footer">
+      <%= @errors %>
+    </div>
+    <div>
+      <%= f.submit "Log In" %>
+    </div>
+  <% end %>
+</div>

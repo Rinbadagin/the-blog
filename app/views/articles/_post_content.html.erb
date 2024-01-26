@@ -1,6 +1,12 @@
 <div id="content">
-  <h2><%= article.title.split("/")[-1] %></h2>
+  <div>
+    <h2><%= article.title.split("/")[-1] %></h2>
+    <% if !article.visibility %>
+      <h5 class="hidden-article-blurb"> This article is currently hidden </h5>
+    <% end %>
+  </div>
   <p>
     <%= raw(process_body(article)) %>
   </p>
+  <h5 class="datetime-footer">Created at: <%= article.created_at.strftime("%B #{article.created_at.day.ordinalize}, %Y") %>. Last updated at: <%= article.updated_at.strftime("%B #{article.updated_at.day.ordinalize}, %Y") %>.</h5>
 </div>

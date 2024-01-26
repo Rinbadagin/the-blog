@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: ENV['ARTICLE_USER'], password: ENV['ARTICLE_PASS'], except: %i[index show]
   before_action :set_sidebar_data
+  before_action :assert_logged_in, except: %i[index show]
   
 
   def index
@@ -9,15 +9,15 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    assert_logged_in if !@article.visibility 
   end
 
   def new
-    @article = Article.new
+    @article = Article.new visibility: true
   end
 
   def create
     @article = Article.new(article_params)
-
     if @article.save
       redirect_to @article
     else
@@ -47,10 +47,16 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :visibility)
     end
 
     def set_sidebar_data
       @articles = Article.all.sort_by &:title
+    end
+
+    def assert_logged_in
+      if !current_user 
+        return redirect_to login_path
+      end
     end
 end

@@ -35,7 +35,6 @@ body {
   border-bottom: 3px double black;
   text-align: center;
   position: relative;
-  height: 105px;
   display: flex;
   justify-content: space-between;
 }
@@ -57,6 +56,8 @@ div.border {
   margin: 6px;
   flex: 1 1 calc(100% - 400px);
   color: black;
+  position: relative;
+  padding-bottom: 25px;
 }
 #content h6,
 #content h5,
@@ -137,4 +138,24 @@ input[type="submit"] {
   color: darkgreen;
   font-weight: 600;
   cursor: pointer;
+}
+
+.datetime-footer {
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+  clear: both;
+}
+
+#sidebar #current-article-link {
+  text-decoration: underline;
+}
+
+#sidebar .hidden-article,
+#sidebar .hidden-section {
+  color: gray;
+}
+
+#content .hidden-article-blurb {
+  color: red;
 }
