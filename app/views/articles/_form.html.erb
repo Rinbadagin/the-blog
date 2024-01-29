@@ -6,7 +6,6 @@
       <div><%= message %></div>
     <% end %>
   </div>
-
   <div>
     <%= form.label :body %><br>
     <%= form.text_area :body, class: "article-body", id: "article-body-input" %>
@@ -19,24 +18,37 @@
       <div><%= message %></div>
     <% end %><br>
     <%= form.submit %>
-<% end %>
-  </div>
-  <div id="post-preview">
+  <% end %>
+</div>
+<div id="post-preview">
   <h3>Preview</h3>
+  <div id="content">
     <h2 id="article-title"></h2>
     <p id="article-body"></p>
   </div>
+</div>
+<script>
+  function updatePreview(){
+    let bodyInput = document.getElementById("article-body-input")
+    let titleInput = document.getElementById("article-title-input")
+    let bodyPreview = document.getElementById("article-body")
+    let titlePreview = document.getElementById("article-title")
 
-  <script>
-
-    function updatePreview(){
-      let bodyInput = document.getElementById("article-body-input")
-      let titleInput = document.getElementById("article-title-input")
-      let bodyPreview = document.getElementById("article-body")
-      let titlePreview = document.getElementById("article-title")
-
-      let content = ""
-      for (let i of bodyInput.value.split("\n")) {
+    let content = ""
+    let mode = ""
+    for (let i of bodyInput.value.split("\n")) {
+      if (i.startsWith("```")) {
+        i = i.slice(3)
+        if (mode == "raw_html") {
+          mode = ""
+        }
+        else {
+          mode = "raw_html"
+        }
+      }
+      if (mode == "raw_html") {
+        content += i
+      } else {
         if (i.startsWith("######"))
           content += `<h6>${i.slice(6)}</h6>`
         else if (i.startsWith("#####"))
@@ -55,26 +67,28 @@
           content += `<p>${i.slice(1)}</p><div class="border"></div>`
         else if (i == "")
           content += "<br>"
-        else
+        else {
           content += `<p>${i}</p>`
+        }
       }
-      bodyPreview.innerHTML = content
-      titlePreview.innerHTML = titleInput.value.split("/").at(-1)
     }
+    bodyPreview.innerHTML = content
+    titlePreview.innerHTML = titleInput.value.split("/").at(-1)
+  }
 
-    window.setTimeout(() => {
-      let bodyInput = document.getElementById("article-body-input")
-      let titleInput = document.getElementById("article-title-input")
+  window.setTimeout(() => {
+    let bodyInput = document.getElementById("article-body-input")
+    let titleInput = document.getElementById("article-title-input")
 
-      bodyInput.addEventListener('input', updatePreview)
-      titleInput.addEventListener('input', updatePreview)
-      updatePreview()
-    }, 500)
-    window.addEventListener('load', () => {
-      let bodyInput = document.getElementById("article-body-input")
-      let titleInput = document.getElementById("article-title-input")
+    bodyInput.addEventListener('input', updatePreview)
+    titleInput.addEventListener('input', updatePreview)
+    updatePreview()
+  }, 500)
+  window.addEventListener('load', () => {
+    let bodyInput = document.getElementById("article-body-input")
+    let titleInput = document.getElementById("article-title-input")
 
-      bodyInput.addEventListener('input', updatePreview)
-      titleInput.addEventListener('input', updatePreview)
-    })
-  </script>
+    bodyInput.addEventListener('input', updatePreview)
+    titleInput.addEventListener('input', updatePreview)
+  })
+</script>

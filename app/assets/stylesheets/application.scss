@@ -95,6 +95,14 @@ div.border {
     height: 25px;
     clear: both;
   }
+  li {
+    margin-left: 1em;
+  }
+  div.across {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+  }
 }
 #content-form {
   margin: 6px;
