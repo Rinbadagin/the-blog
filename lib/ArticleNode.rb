@@ -43,9 +43,12 @@ class ArticleNode
     # This should handle duplicate article names gracefully. Check article id & such
     content = ""
     if @children.length >= 1
+      flag_close_details = nil
       if @link
+        flag_close_details = true
         content += "<details id=\"article-sidebar-details-#{@article.id}\"><summary>#{@link}</summary><ul>"
       elsif @leaf_name
+        flag_close_details = true
         # there is a potential intersection here. two articles which swap name or have the same leaf name will be opened
         # if we keep them open by id
         content += "<details id=\"article-sidebar-details-#{@leaf_name}\"><summary>#{@leaf_name}</summary><ul>"
@@ -53,7 +56,7 @@ class ArticleNode
       @children.each do |key_child_pair|
         content += "#{key_child_pair[1].render_html}"
       end
-      content += "</ul></details>"
+      content += "</ul>#{flag_close_details ? '</details>' : ''}"
     elsif @link
       content = "<li>#{@link}</li>"
     else
