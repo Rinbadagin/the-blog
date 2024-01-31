@@ -5,9 +5,6 @@
 # https://guides.rubyonrails.org/security.html#content-security-policy-header
 
 Rails.application.configure do
-  config.content_security_policy do |policy|
-    policy.frame_ancestors :self, "https://*.eliza.nz http://*.eliza.nz http://eliza.nz https://eliza.nz 127.0.0.1"
-  end
 #
 #     policy.default_src :self, :https
 #     policy.font_src    :self, :https, :data

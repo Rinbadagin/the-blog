@@ -14,15 +14,15 @@
  *= require_self
  */
 
-$main_highlight: green;
-$main_active: black;
-$main_highlight_support: darkgreen;
+$main_highlight: darkslategray;
+$main_active: #111111;
+$main_highlight_support: black;
 $color_4: rgb(38, 21, 21);
 $hidden_article: gray;
 $hidden_article_message: red;
 $content_a: cornflowerblue;
 $global_font: "opendyslexic";
-$main_background: white;
+$main_background: beige;
 
 @font-face {
   font-family: "opendyslexic";
@@ -37,6 +37,7 @@ $main_background: white;
 }
 body {
   color: $main_highlight;
+  background-color: $main_background;
 }
 img {
   image-rendering: pixelated;
@@ -233,13 +234,4 @@ input[type="submit"] {
       flex-grow: 100;
     }
   }
-}
-
-.link-button {
-  text-decoration: none;
-  font-weight: 400;
-  border: 1px solid green;
-  border-radius: 6px;
-  padding: 4px;
-  margin: 4px;
 }
