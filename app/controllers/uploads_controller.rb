@@ -1,12 +1,8 @@
 class UploadsController < ApplicationController
-  before_action :assert_logged_in, except: %i[show]
+  before_action :assert_logged_in
 
   def index
     @uploads = Upload.all
-  end
-
-  def show
-    @upload = Upload.find(params[:title]) #find_by(title: params[:title])
   end
 
   def new

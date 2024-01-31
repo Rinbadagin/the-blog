@@ -38,6 +38,9 @@ $main_background: white;
 body {
   color: $main_highlight;
 }
+img {
+  image-rendering: pixelated;
+}
 #header {
   border-bottom: 3px double black;
   text-align: center;
