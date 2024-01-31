@@ -9,11 +9,13 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'shared/music_player' %>
-    <%= render "articles/header"%>
-    <div id="page">
-      <%= render "articles/sidebar", article: @sidebar_article %>
-      <%= yield %>
+    <div class="site-container">
+      <%= render "articles/header"%>
+      <%= render 'shared/music_player' %>
+      <div id="page">
+        <%= render "articles/sidebar", article: @sidebar_article %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
