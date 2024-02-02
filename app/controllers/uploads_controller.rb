@@ -20,6 +20,7 @@ class UploadsController < ApplicationController
 
   def destroy
     @upload = Upload.find(params[:title])
+    @upload.content.purge
     @upload.destroy
 
     redirect_to upload_path, status: :see_other

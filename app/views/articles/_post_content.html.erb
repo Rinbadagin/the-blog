@@ -1,4 +1,4 @@
-<div id="content">
+<article id="content">
   <div>
     <h2><%= article.title.split("/")[-1] %></h2>
     <% if !article.visibility %>
@@ -8,5 +8,5 @@
   <p>
     <%= raw(process_body(article)) %>
   </p>
-  <h5 class="datetime-footer">Created at: <%= article.created_at.strftime("%B #{article.created_at.day.ordinalize}, %Y") %>. Last updated at: <%= article.updated_at.strftime("%B #{article.updated_at.day.ordinalize}, %Y") %>.</h5>
-</div>
+  <footer class="datetime-footer">Created: <%= article.created_at.strftime("%B #{article.created_at.day.ordinalize}, %Y") %>. Updated: <%= article.updated_at.strftime("%B #{article.updated_at.day.ordinalize}, %Y") %>.</footer>
+</article>

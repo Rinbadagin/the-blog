@@ -42,8 +42,14 @@ body {
 img {
   image-rendering: pixelated;
 }
-#header {
-  border-bottom: 3px double black;
+header {
+  border-style: solid;
+  border-width: 10px;
+  border-image: url(trans-border.png) 45 45 45 45 repeat repeat;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
   text-align: center;
   position: relative;
   display: flex;

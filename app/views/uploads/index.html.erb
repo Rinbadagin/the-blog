@@ -1,3 +1,4 @@
+<% @title="Uploads Index" %>
 <%= render "articles/header"%>
 <div id="page">
   <%= render "articles/sidebar", article: nil %>
@@ -11,7 +12,7 @@
           <div class="title">
             ![<%= upload.title %>]
           </div>
-          <% if !upload.content.image? %>
+          <% if upload.content && !upload.content.image? %>
             <div class="file-content">
               <a href="<%= url_for(upload.content) %>" target="_blank">View/download</a>
             </div>
@@ -19,7 +20,7 @@
           <div class="description">
             <%= upload.description %>
           </div>
-          <% if upload.content.image? %>
+          <% if upload.content && upload.content.image? %>
             <div class="image-content">
               <img src="<%= url_for(upload.content) %>"/>
             </div>
