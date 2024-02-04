@@ -23,9 +23,7 @@ module Blog
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    
-    # Add your host here.
-    # config.hosts << "example.com"
     config.session_store :cookie_store, expire_after: 3.months
+    config.hosts << "eliza.nz"
   end
 end
