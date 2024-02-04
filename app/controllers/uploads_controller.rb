@@ -1,4 +1,5 @@
 class UploadsController < ApplicationController
+  include ActiveStorage::SetCurrent
   before_action :assert_logged_in
 
   def index
