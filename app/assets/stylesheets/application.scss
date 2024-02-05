@@ -189,6 +189,12 @@ textarea {
   box-sizing: border-box;
 }
 
+label[required]:after,
+label[required]::after {
+  content: " *";
+  color: red;
+}
+
 input[type="submit"] {
   background-color: $main_background;
   color: $main_highlight_support;
@@ -215,6 +221,7 @@ input[type="submit"] {
     flex-wrap: wrap;
     margin-top: 24px;
     margin-left: 12px;
+    color: black;
 
     .entry-blurb {
       display: flex;
@@ -223,25 +230,27 @@ input[type="submit"] {
       margin: 8px;
       padding: 8px;
       margin-bottom: 25px;
-      border: 3px double black;
       min-width: calc(max(25%, 300px));
-
-      .destroy-link {
-        margin-top: 20px;
-      }
-      .author {
-        span {
-          text-decoration: underline;
+      div {
+        .destroy-link {
+          margin-top: 20px;
         }
-      }
-      .body {
-        font-style: italic;
-        min-height: 40px;
-        flex-grow: 1;
-      }
-      .home-site {
-      }
-      .contact {
+        .author {
+          span {
+            text-decoration: underline;
+          }
+        }
+        .body {
+          min-height: 40px;
+          flex-grow: 1;
+        }
+        .home-site {
+        }
+        .contact {
+        }
+        .datetime-footer {
+          font-style: italic;
+        }
       }
     }
   }

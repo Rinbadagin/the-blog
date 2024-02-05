@@ -5,35 +5,35 @@
   <%= form_with model: @entry, url: guestbook_index_path do |f| %>
     <h2>New Guestbook Entry</h2>
     <div>
-      <%= f.label :author %><br>
-      <%= f.text_field :author, autofocus: true %>
-      <% @entry.errors.full_messages_for(:author).each do |message| %>
+      <%= f.label :name, required: true %><br>
+      <%= f.text_field :name, autofocus: true, required: true %>
+      <% @entry.errors.full_messages_for(:name).each do |message| %>
         <div><%= message %></div>
       <% end %>
     </div>
     <div>
-      <%= f.label :body %><br>
-      <%= f.text_area :body %>
+      <%= f.label :body, required: true %><br>
+      <%= f.text_area :body, required: true %>
       <% @entry.errors.full_messages_for(:body).each do |message| %>
         <div><%= message %></div>
       <% end %>
     </div>
     <div>
-      <%= f.label :contact %><br>
+      <%= f.label :contact %> (optional)<br>
       <%= f.text_area :contact %>
       <% @entry.errors.full_messages_for(:contact).each do |message| %>
         <div><%= message %></div>
       <% end %>
     </div>
     <div>
-      <%= f.label :home_site %><br>
+      <%= f.label :home_site %> (optional)<br>
       <%= f.text_field :home_site, autofocus: true %>
       <% @entry.errors.full_messages_for(:home_site).each do |message| %>
         <div><%= message %></div>
       <% end %>
     </div>
-    <%= f.label :hide_contact_from_public %>
-    <%= f.check_box :hide_contact_from_public %>
+    <%= f.label :hide_contact_from_public %> <br>
+    <%= f.check_box :hide_contact_from_public %> (optional)
     <% @entry.errors.full_messages_for(:hide_contact_from_public).each do |message| %>
       <div><%= message %></div>
     <% end %><br>

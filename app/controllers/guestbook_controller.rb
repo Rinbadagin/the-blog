@@ -30,7 +30,7 @@ class GuestbookController < ApplicationController
 
   private 
     def entry_params
-      params.require(:guestbook_entry).permit(:author, :body, :home_site, :contact, :hide_contact_from_public)
+      params.require(:guestbook_entry).permit(:name, :body, :home_site, :contact, :hide_contact_from_public)
     end
 
     def assert_logged_in
