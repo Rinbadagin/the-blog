@@ -1,0 +1,2 @@
+class GuestbookEntry < ApplicationRecord
+end

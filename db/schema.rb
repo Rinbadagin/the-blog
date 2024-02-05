@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_26_031900) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_04_121213) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,6 +45,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_26_031900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "visibility"
+  end
+
+  create_table "guestbook_entries", force: :cascade do |t|
+    t.string "author"
+    t.string "body"
+    t.string "home_site"
+    t.string "contact"
+    t.boolean "hide_contact_from_public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "uploads", force: :cascade do |t|

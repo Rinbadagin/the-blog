@@ -3,9 +3,6 @@
 <div id="page">
   <%= render "articles/sidebar", article: nil %>
   <div class="upload-index">
-    <div class="new-upload">
-      <%= link_to "New Upload", new_upload_path %>
-    </div>
     <div class="container">
       <% @uploads.each do |upload| %>
         <div class="upload-blurb">

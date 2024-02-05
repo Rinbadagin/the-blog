@@ -149,10 +149,10 @@ div.border {
     color: $hidden_article;
   }
   ul {
-    margin: 12px;
+    margin-left: 12px;
   }
   li {
-    margin: 12px;
+    margin-left: 12px;
   }
 }
 a {
@@ -194,6 +194,57 @@ input[type="submit"] {
   color: $main_highlight_support;
   font-weight: 600;
   cursor: pointer;
+}
+
+.guestbook-index {
+  width: 100%;
+  .new-entry {
+    margin: 8px;
+    a {
+      text-decoration: none;
+    }
+  }
+  nav {
+    text-align: center;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    margin-left: 12px;
+
+    .entry-blurb {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      margin: 8px;
+      padding: 8px;
+      margin-bottom: 25px;
+      border: 3px double black;
+      min-width: calc(max(25%, 300px));
+
+      .destroy-link {
+        margin-top: 20px;
+      }
+      .author {
+        span {
+          text-decoration: underline;
+        }
+      }
+      .body {
+        font-style: italic;
+        min-height: 40px;
+        flex-grow: 1;
+      }
+      .home-site {
+      }
+      .contact {
+      }
+    }
+  }
 }
 
 .upload-index {
@@ -240,4 +291,8 @@ input[type="submit"] {
       flex-grow: 100;
     }
   }
+}
+
+.warning {
+  color: orangered;
 }

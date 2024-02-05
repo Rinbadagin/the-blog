@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: MyString
+  body: MyString
+  home_site: MyString
+  contact: MyString
+  hide_contact_from_public: false
+
+two:
+  author: MyString
+  body: MyString
+  home_site: MyString
+  contact: MyString
+  hide_contact_from_public: false
