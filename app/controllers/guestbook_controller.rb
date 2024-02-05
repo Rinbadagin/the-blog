@@ -12,7 +12,14 @@ class GuestbookController < ApplicationController
   end
 
   def create
+    @captcha_string = "I am human"
+    captcha = params[:iamhuman]
     @entry = GuestbookEntry.new(entry_params)
+    if captcha != @captcha_string 
+      @errors = "That 'thing' (you know the one) has to say '#{@captcha_string}'. Exactly."
+      render :new, status: :unprocessable_entity
+      return
+    end
     if @entry.save
       redirect_to guestbook_index_path
     else

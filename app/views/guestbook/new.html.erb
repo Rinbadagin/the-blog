@@ -12,6 +12,12 @@
       <% end %>
     </div>
     <div>
+      <%= label_tag(:iamhuman, "Are you human? ") %><br>
+      <div>Please type '<%= @captcha_string %>'</div>
+      <%= text_field_tag(:iamhuman) %>
+      <div class="warning"><%= @errors%></div>
+    </div>
+    <div>
       <%= f.label :body, required: true %><br>
       <%= f.text_area :body, required: true %>
       <% @entry.errors.full_messages_for(:body).each do |message| %>
