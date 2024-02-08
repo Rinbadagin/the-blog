@@ -1,5 +1,5 @@
 <% @title="New Guestbook Entry" %>
-<%= form_with model: @entry, url: guestbook_index_path do |f| %>
+<%= form_with model: @entry, url: guestbook_index_path, class: "guestbook" do |f| %>
   <h2>New Guestbook Entry</h2>
   <div>
     <%= f.label :name, required: true %><br>

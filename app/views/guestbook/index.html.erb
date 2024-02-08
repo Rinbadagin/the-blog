@@ -6,6 +6,7 @@
     <% end %>
   </nav>
   <div class="container">
+    <div><%= link_to "New Entry", new_guestbook_path, class: "link-button" %></div>
     <% if @entries.length == 0 %>
       <div class="warning">
         Looks like there's nothing here...
