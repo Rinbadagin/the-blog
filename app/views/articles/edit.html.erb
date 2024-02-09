@@ -1,6 +1,3 @@
 <% @title="Edit #{@article.title.split("/")[-1]}" %>
-<%= render "header"%>
-<div id="page">
-  <%= render "sidebar", article: @article %>
-  <%= render "form", article: @article %>
-</div>
+<% @sidebar_article=@article %>
+<%= render "form", article: @article %>

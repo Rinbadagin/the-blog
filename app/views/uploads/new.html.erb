@@ -1,31 +1,27 @@
 <% @title="New Upload" %>
-<%= render "articles/header"%>
-<div id="page">
-  <%= render "articles/sidebar", article: nil %>
-  <%= form_with model: @upload do |f| %>
-    <div>
-      <%= f.label :title %><br>
-      <%= f.text_field :title, autofocus: true %>
-      <% @upload.errors.full_messages_for(:title).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
-    <div>
-      <%= f.label :description %><br>
-      <%= f.text_area :description %>
-      <% @upload.errors.full_messages_for(:description).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
-    <div>
-      <%= f.label :content %><br>
-      <%= f.file_field :content, direct_upload: true %>
-      <% @upload.errors.full_messages_for(:content).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
-    <div>
-      <%= f.submit "Upload" %>
-    </div>
-  <% end %>
-</div>
+<%= form_with model: @upload do |f| %>
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, autofocus: true %>
+    <% @upload.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+    <% @upload.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :content %><br>
+    <%= f.file_field :content, direct_upload: true %>
+    <% @upload.errors.full_messages_for(:content).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit "Upload" %>
+  </div>
+<% end %>

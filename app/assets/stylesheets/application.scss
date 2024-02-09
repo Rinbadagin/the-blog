@@ -43,10 +43,6 @@ img {
   image-rendering: pixelated;
 }
 header {
-  border-style: solid;
-  border-width: 10px;
-  border-image: url(trans-border.png) 45 45 45 45 repeat repeat;
-
   border-top: none;
   border-left: none;
   border-right: none;
@@ -117,16 +113,20 @@ div.border {
 }
 #content-form {
   margin: 6px;
-  flex: 3 1 50%;
   textarea.article-body {
     width: 100%;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 400px);
   }
 }
-#post-preview {
-  width: 50%;
-  margin: 6px;
-  flex: 3 1 auto;
+#article-form {
+  flex-grow: 1000;
+  margin: 4px;
+  #content {
+    display: none;
+    h3:first-child {
+      color: orangered;
+    }
+  }
 }
 #sidebar {
   border-right: 3px double black;
@@ -135,6 +135,7 @@ div.border {
   width: 25%;
   a {
     text-decoration: none;
+    cursor: pointer;
   }
   summary {
     cursor: pointer;
@@ -265,7 +266,7 @@ input[type="submit"] {
   }
   .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 24px;
@@ -279,6 +280,7 @@ input[type="submit"] {
       padding: 8px;
       margin-bottom: 25px;
       border: 3px double black;
+      text-align: center;
       .destroy-link {
         margin-top: 20px;
       }
@@ -289,6 +291,7 @@ input[type="submit"] {
       .description {
         font-style: italic;
         min-height: 40px;
+        max-width: 20vw;
         flex-grow: 1;
       }
       .image-content img {

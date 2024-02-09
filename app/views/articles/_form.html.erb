@@ -1,12 +1,11 @@
-<%= form_with model: article, id: "content-form" do |form| %>
-  <div>
+<div id="article-form">
+  <input type="button" value="Toggle Preview" onclick="togglePreview()">
+  <%= form_with model: article, id: "content-form" do |form| %>
     <%= form.label :title %><br>
-    <%= form.text_field :title, id: "article-title-input" %>
+    <%= form.text_field :title, id: "article-title-input" %><br>
     <% article.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
-  </div>
-  <div>
     <%= form.label :body %><br>
     <%= form.text_area :body, class: "article-body", id: "article-body-input" %>
     <% article.errors.full_messages_for(:body).each do |message| %>
@@ -19,76 +18,85 @@
     <% end %><br>
     <%= form.submit %>
   <% end %>
-</div>
-<div id="post-preview">
-  <h3>Preview</h3>
   <div id="content">
+    <h3>Preview</h3>
     <h2 id="article-title"></h2>
     <p id="article-body"></p>
   </div>
-</div>
-<script>
-  function updatePreview(){
-    let bodyInput = document.getElementById("article-body-input")
-    let titleInput = document.getElementById("article-title-input")
-    let bodyPreview = document.getElementById("article-body")
-    let titlePreview = document.getElementById("article-title")
-
-    let content = ""
-    let mode = ""
-    for (let i of bodyInput.value.split("\n")) {
-      if (i.startsWith("```")) {
-        i = i.slice(3)
-        if (mode == "raw_html") {
-          mode = ""
-        }
-        else {
-          mode = "raw_html"
-        }
+  <script>
+    function togglePreview(){
+      let form = document.getElementById("content-form")
+      let preview = document.getElementById("content")
+      if (!form.style.display && !preview.style.display) {
+        form.style.display = "block"
+        preview.style.display= "none"
       }
-      if (mode == "raw_html") {
-        content += i
-      } else {
-        if (i.startsWith("######"))
-          content += `<h6>${i.slice(6)}</h6>`
-        else if (i.startsWith("#####"))
-          content += `<h5>${i.slice(5)}</h5>`
-        else if (i.startsWith("####"))
-          content += `<h4>${i.slice(4)}</h4>`
-        else if (i.startsWith("###"))
-          content += `<h3>${i.slice(3)}</h3>`
-        else if (i.startsWith("##"))
-          content += `<h2>${i.slice(2)}</h2>`
-        else if (i.startsWith("#"))
-          content += `<h1>${i.slice(1)}</h1>`
-        else if (i.startsWith("*"))
-          content += `<ul><li>${i.slice(1)}</li></ul>`
-        else if (i.startsWith("_"))
-          content += `<p>${i.slice(1)}</p><div class="border"></div>`
-        else if (i == "")
-          content += "<br>"
-        else {
-          content += `<p>${i}</p>`
-        }
-      }
+      form.style.display = preview.style.display
+      preview.style.display = form.style.display == "block" ? "none" : "block"
     }
-    bodyPreview.innerHTML = content
-    titlePreview.innerHTML = titleInput.value.split("/").at(-1)
-  }
 
-  window.setTimeout(() => {
-    let bodyInput = document.getElementById("article-body-input")
-    let titleInput = document.getElementById("article-title-input")
+    function updatePreview(){
+      let bodyInput = document.getElementById("article-body-input")
+      let titleInput = document.getElementById("article-title-input")
+      let bodyPreview = document.getElementById("article-body")
+      let titlePreview = document.getElementById("article-title")
 
-    bodyInput.addEventListener('input', updatePreview)
-    titleInput.addEventListener('input', updatePreview)
-    updatePreview()
-  }, 500)
-  window.addEventListener('load', () => {
-    let bodyInput = document.getElementById("article-body-input")
-    let titleInput = document.getElementById("article-title-input")
+      let content = ""
+      let mode = ""
+      for (let i of bodyInput.value.split("\n")) {
+        if (i.startsWith("```")) {
+          i = i.slice(3)
+          if (mode == "raw_html") {
+            mode = ""
+          }
+          else {
+            mode = "raw_html"
+          }
+        }
+        if (mode == "raw_html") {
+          content += i
+        } else {
+          if (i.startsWith("######"))
+            content += `<h6>${i.slice(6)}</h6>`
+          else if (i.startsWith("#####"))
+            content += `<h5>${i.slice(5)}</h5>`
+          else if (i.startsWith("####"))
+            content += `<h4>${i.slice(4)}</h4>`
+          else if (i.startsWith("###"))
+            content += `<h3>${i.slice(3)}</h3>`
+          else if (i.startsWith("##"))
+            content += `<h2>${i.slice(2)}</h2>`
+          else if (i.startsWith("#"))
+            content += `<h1>${i.slice(1)}</h1>`
+          else if (i.startsWith("*"))
+            content += `<ul><li>${i.slice(1)}</li></ul>`
+          else if (i.startsWith("_"))
+            content += `<p>${i.slice(1)}</p><div class="border"></div>`
+          else if (i == "")
+            content += "<br>"
+          else {
+            content += `<p>${i}</p>`
+          }
+        }
+      }
+      bodyPreview.innerHTML = content
+      titlePreview.innerHTML = titleInput.value.split("/").at(-1)
+    }
 
-    bodyInput.addEventListener('input', updatePreview)
-    titleInput.addEventListener('input', updatePreview)
-  })
-</script>
+    window.setTimeout(() => {
+      let bodyInput = document.getElementById("article-body-input")
+      let titleInput = document.getElementById("article-title-input")
+
+      bodyInput.addEventListener('input', updatePreview)
+      titleInput.addEventListener('input', updatePreview)
+      updatePreview()
+    }, 500)
+    window.addEventListener('load', () => {
+      let bodyInput = document.getElementById("article-body-input")
+      let titleInput = document.getElementById("article-title-input")
+
+      bodyInput.addEventListener('input', updatePreview)
+      titleInput.addEventListener('input', updatePreview)
+    })
+  </script>
+</div>

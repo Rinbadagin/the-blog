@@ -1,6 +1,3 @@
 <% @title=@article.title.split("/")[-1] %>
-<%= render "header"%>
-<div id="page">
-  <%= render "sidebar", article: @article %>
-  <%= render "post_content", article: @article %>
-</div>
+<% @sidebar_article=@article %>
+<%= render "post_content", article: @article %>

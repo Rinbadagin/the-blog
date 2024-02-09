@@ -9,6 +9,10 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= yield %>
+    <%= render "articles/header"%>
+    <div id="page">
+      <%= render "articles/sidebar", article: @sidebar_article %>
+      <%= yield %>
+    </div>
   </body>
 </html>
