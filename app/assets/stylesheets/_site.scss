@@ -10,11 +10,33 @@ $global_font: "Times New Roman";
 $main_background: black;
 
 @font-face {
-  font-family: "opendyslexic";
-  src: url("OpenDyslexic-Regular.otf");
+  font-family: "Times New Roman";
+  src: url("times new roman.ttf");
   font-style: normal;
   font-weight: normal;
 }
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("times new roman italic.ttf");
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("times new roman bold.ttf");
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("times new roman bold italic.ttf");
+  font-style: italic;
+  font-weight: 800;
+}
+
 * {
   font-family: $global_font;
   margin: 0px;
