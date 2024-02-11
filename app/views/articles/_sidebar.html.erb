@@ -1,11 +1,11 @@
 <nav id="sidebar">
-  <%= image_tag "ladybird_keypress.png", alt: "finger pressing a key", size: "72x72"%>
+  <%= image_tag "ladybird_keypress_144x.png", alt: "finger pressing a key", size: "72x72"%>
   <ul>
     <%= 
       raw(generate_tree_from_article_list(Article.order(:title).all, article))
     %>
     <li class="border"></li>
-    <%= image_tag "ladybird_computer_02.png", alt: "mini-computer", size: "72x72"%>
+    <%= image_tag "ladybird_computer_02_144x.png", alt: "mini-computer"%>
     <li><%= link_to "Guestbook", guestbook_index_path, class: "controls" %></li>
     <% if request.path == guestbook_index_path %>
       <li><%= link_to "New Entry", new_guestbook_path, class: "controls" %></li>
@@ -43,5 +43,5 @@
       }
     </script>
   </ul>
-  <%= image_tag "ladybird_smiling_computer.png", alt: "smiling computer", size: "72x72" %>
+  <%= image_tag "ladybird_smiling_computer_144x.png", alt: "smiling computer", size: "72x72" %>
 </nav>
