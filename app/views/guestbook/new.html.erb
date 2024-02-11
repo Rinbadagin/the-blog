@@ -35,11 +35,12 @@
       <div><%= message %></div>
     <% end %>
   </div>
-  <%= f.label :hide_contact_from_public %> <br>
-  <%= f.check_box :hide_contact_from_public %> (optional)
+  <%= f.label :hide_contact_from_public %> (optional) <br>
+  <%= f.check_box :hide_contact_from_public %>
   <% @entry.errors.full_messages_for(:hide_contact_from_public).each do |message| %>
     <div><%= message %></div>
   <% end %><br>
+  <div class="border"></div>
   <div>
     <%= f.submit "Submit" %>
   </div>

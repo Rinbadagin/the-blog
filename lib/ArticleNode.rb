@@ -46,17 +46,17 @@ class ArticleNode
       flag_close_details = nil
       if @link
         flag_close_details = true
-        content += "<details id=\"article-sidebar-details-#{@article.id}\"><summary>#{@link}</summary><ul>"
+        content += "<li><details id=\"article-sidebar-details-#{@article.id}\"><summary>#{@link}</summary><ul>"
       elsif @leaf_name
         flag_close_details = true
         # there is a potential intersection here. two articles which swap name or have the same leaf name will be opened
         # if we keep them open by id
-        content += "<details id=\"article-sidebar-details-#{@leaf_name}\"><summary>#{@leaf_name}</summary><ul>"
+        content += "<li><details id=\"article-sidebar-details-#{@leaf_name}\"><summary>#{@leaf_name}</summary><ul>"
       end
       @children.each do |key_child_pair|
         content += "#{key_child_pair[1].render_html}"
       end
-      content += "</ul>#{flag_close_details ? '</details>' : ''}"
+      content += "#{flag_close_details ? '</li></ul></details>' : ''}"
     elsif @link
       content = "<li>#{@link}</li>"
     else

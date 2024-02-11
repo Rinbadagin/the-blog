@@ -1,12 +1,13 @@
 $main_highlight: #f5abb9;
 $main_active: #5acffa;
+$main_secondary: white;
 $main_highlight_support: #5acffa;
 $main_active_interactable: lightblue;
 $hidden_article: gray;
 $hidden_article_message: red;
 $content_a: cornflowerblue;
-$global_font: "opendyslexic";
-$main_background: white;
+$global_font: "Times New Roman";
+$main_background: black;
 
 @font-face {
   font-family: "opendyslexic";
@@ -35,21 +36,47 @@ header {
   text-align: center;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  marquee {
-    width: 94px;
-    height: 108px;
+  border-bottom: 7.5px double $main_highlight;
+
+  h1 {
+    color: $main_secondary;
+    text-decoration: underline;
   }
-  .logo-drawing {
-    width: 7em;
+  img {
   }
 }
 #page {
   display: flex;
+  & > form {
+    color: $main_active;
+    h2 {
+      color: $main_secondary;
+    }
+    label {
+      color: $main_highlight;
+    }
+    input {
+      text-align: left;
+    }
+    textarea {
+      width: 100%;
+    }
+    input[type="checkbox"] {
+      width: 1em;
+    }
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 20px;
+  }
 }
-div.border {
-  border-bottom: 10px double $main_highlight;
+.border {
+  display: block;
+  width: 100%;
+  border-bottom: 10px double $main_secondary;
 }
 #content {
   margin: 6px;
@@ -58,6 +85,9 @@ div.border {
   position: relative;
   padding-bottom: 25px;
   width: 100vw;
+  h2:first-of-type {
+    color: $main_secondary;
+  }
   h6 {
     color: $main_highlight;
   }
@@ -97,6 +127,21 @@ div.border {
     justify-content: left;
     flex-wrap: wrap;
   }
+  table {
+    border: 2px double $main_secondary;
+    width: 100%;
+    a {
+      color: inherit;
+    }
+    td,
+    th {
+      border: 1px solid $main_active;
+    }
+    tr:nth-child(even) {
+      background-color: rgba($main_highlight, 0.6);
+      color: $main_secondary;
+    }
+  }
 }
 #content-form {
   margin: 6px;
@@ -120,6 +165,11 @@ div.border {
   border-right: 10px double $main_active;
   padding: 1em;
   max-width: 250px;
+  li:has(details),
+  li:has(.controls) {
+    margin-left: 0px;
+    list-style-type: none;
+  }
   a {
     text-decoration: none;
     cursor: pointer;
@@ -142,6 +192,10 @@ div.border {
   li {
     margin-left: 12px;
   }
+  .controls {
+    width: 100%;
+    display: block;
+  }
 }
 a {
   font-weight: 800;
@@ -162,19 +216,23 @@ a {
 input {
   resize: vertical;
   border-radius: 4px;
-  border: 1px solid black;
+  border: 1px solid $main_highlight;
   padding: 4px;
   margin: 4px;
   box-sizing: border-box;
+  background-color: $main_background;
+  color: $main_secondary;
 }
 
 textarea {
   resize: vertical;
   border-radius: 4px;
-  border: 1px solid black;
+  border: 1px solid $main_highlight;
   padding: 4px;
   margin: 4px;
   box-sizing: border-box;
+  background-color: $main_background;
+  color: $main_secondary;
 }
 
 label[required]:after,
@@ -209,7 +267,7 @@ input[type="submit"] {
     flex-wrap: wrap;
     margin-top: 24px;
     margin-left: 12px;
-    color: black;
+    color: $main_active;
 
     .entry-blurb {
       display: flex;
@@ -219,11 +277,13 @@ input[type="submit"] {
       padding: 8px;
       margin-bottom: 25px;
       min-width: calc(max(25%, 300px));
+      border: 7.5px double $main_highlight;
       div {
         .destroy-link {
           margin-top: 20px;
         }
         .author {
+          color: $main_secondary;
           span {
             text-decoration: underline;
           }
@@ -266,7 +326,7 @@ input[type="submit"] {
       margin: 8px;
       padding: 8px;
       margin-bottom: 25px;
-      border: 3px double black;
+      border: 3px double $main_highlight;
       text-align: center;
       .destroy-link {
         margin-top: 20px;
@@ -283,7 +343,7 @@ input[type="submit"] {
       }
       .image-content img {
         width: 200px;
-        border: 3px double black;
+        border: 3px double $main_secondary;
       }
     }
     ::after {
