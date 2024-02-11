@@ -16,7 +16,7 @@
         </div>
         <% if upload.content.image? %>
           <div class="image-content">
-            <img src="<%= url_for(upload.content) %>"/>
+            <img src="<%= url_for(upload.content.variant(resize_to_limit: [500, 500])) %>"/>
           </div>
         <% end %>
         <div class="destroy-link">

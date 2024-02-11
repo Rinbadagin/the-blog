@@ -76,6 +76,7 @@ header {
 .border {
   display: block;
   width: 100%;
+  margin: 0px;
   border-bottom: 10px double $main_secondary;
 }
 #content {
@@ -84,7 +85,7 @@ header {
   color: $main_active;
   position: relative;
   padding-bottom: 25px;
-  width: 100vw;
+  width: 100%;
   h2:first-of-type {
     color: $main_secondary;
   }
@@ -164,37 +165,37 @@ header {
 #sidebar {
   border-right: 10px double $main_active;
   padding: 1em;
-  max-width: 250px;
   li:has(details),
   li:has(.controls) {
     margin-left: 0px;
     list-style-type: none;
   }
-  a {
-    text-decoration: none;
-    cursor: pointer;
-  }
+  a,
   summary {
+    text-decoration: none;
     cursor: pointer;
   }
   #current-article-link {
     text-decoration: underline;
   }
-  .hidden-article {
-    color: $hidden_article;
-  }
+  .hidden-article,
   .hidden-section {
     color: $hidden_article;
   }
-  ul {
+  li,
+  ul ul {
     margin-left: 12px;
   }
-  li {
-    margin-left: 12px;
+  .border {
+    margin-left: 0px;
   }
   .controls {
     width: 100%;
     display: block;
+  }
+  img {
+    width: 72px;
+    margin: 12px;
   }
 }
 a {
