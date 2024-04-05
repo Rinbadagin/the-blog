@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# sample command: /update_from_backup.bash storage.2024-03-08@00-15 prod.dump.2024-03-08@00-15 production.sqlite3
+
 if [ -z "$STORAGE_BACKUP" ]
 then 
   echo "Using shell params for Storage backup"
@@ -42,10 +45,10 @@ echo "Using $STORAGE_BACKUP as Storage backup"
 echo "Using $DB_BACKUP as DB Backup"
 echo "Using $DB_OUT_FILENAME as DB output filename in storage/"
 
-DATE_AND_TIME=$(date "+%F@%H-%m")
+DATE_AND_TIME=$(date "+%F-%H-%M")
 ORIGINAL_DIR=$(pwd)
 TEMPORARY_DIR=$(mktemp -d)
-echo "Moving storage from storage/ to storage-pre-backup-hydration-/"
+echo "Moving storage from storage/ to storage-pre-backup-hydration-$DATE_AND_TIME"
 mv storage/ storage-pre-backup-hydration-$DATE_AND_TIME/
 
 cp $STORAGE_BACKUP.gz $TEMPORARY_DIR
@@ -59,7 +62,7 @@ gzip -dk $DB_BACKUP.gz
 sqlite3 backup-output.db < $DB_BACKUP
 
 mv backup-output.db storage/$DB_OUT_FILENAME
-mv storage/ $ORIGINAL_DIR/storage
+mv storage/ $ORIGINAL_DIR
 
 echo "Backup complete. storage/ has the hydrated files now"
 
