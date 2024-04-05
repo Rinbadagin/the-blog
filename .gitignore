@@ -36,3 +36,5 @@
 
 # Ignore hydrated backup old
 /storage-pre-backup-hydration*
+/app/assets/builds/*
+!/app/assets/builds/.keep

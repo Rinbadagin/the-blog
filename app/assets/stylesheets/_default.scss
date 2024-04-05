@@ -1,12 +1,12 @@
-$main_highlight: darkslategray;
-$main_active: #111111;
-$main_highlight_support: black;
-$color_4: rgb(38, 21, 21);
-$hidden_article: gray;
-$hidden_article_message: red;
-$content_a: cornflowerblue;
-$global_font: "opendyslexic";
-$main_background: beige;
+$main_highlight: darkslategray !default;
+$main_active: #111111 !default;
+$main_highlight_support: black !default;
+$color_4: rgb(38, 21, 21) !default;
+$hidden_article: gray !default;
+$content_a: cornflowerblue !default;
+$global_font: "opendyslexic" !default;
+$main_background: beige !default;
+$warning: red !default;
 
 @font-face {
   font-family: "opendyslexic";
@@ -47,7 +47,7 @@ header {
   display: flex;
 }
 div.border {
-  border-bottom: 3px double black;
+  border-bottom: 3px double $main_highlight_support;
 }
 #content {
   margin: 6px;
@@ -74,7 +74,7 @@ div.border {
     color: $main_highlight;
   }
   .hidden-article-blurb {
-    color: $hidden_article_message;
+    color: $warning;
   }
   a {
     color: $content_a;
@@ -108,12 +108,12 @@ div.border {
   #content {
     display: none;
     h3:first-child {
-      color: orangered;
+      color: $warning;
     }
   }
 }
 #sidebar {
-  border-right: 3px double black;
+  border-right: 3px double $main_highlight_support;
   padding: 1em;
   max-width: 250px;
   width: 25%;
@@ -159,7 +159,7 @@ a {
 input {
   resize: vertical;
   border-radius: 4px;
-  border: 1px solid black;
+  border: 1px solid $main_highlight_support;
   padding: 4px;
   margin: 4px;
   box-sizing: border-box;
@@ -168,7 +168,7 @@ input {
 textarea {
   resize: vertical;
   border-radius: 4px;
-  border: 1px solid black;
+  border: 1px solid $main_highlight_support;
   padding: 4px;
   margin: 4px;
   box-sizing: border-box;
@@ -177,7 +177,7 @@ textarea {
 label[required]:after,
 label[required]::after {
   content: " *";
-  color: red;
+  color: $warning;
 }
 
 input[type="submit"] {
@@ -206,7 +206,7 @@ input[type="submit"] {
     flex-wrap: wrap;
     margin-top: 24px;
     margin-left: 12px;
-    color: black;
+    color: $main_highlight_support;
 
     .entry-blurb {
       display: flex;
@@ -263,7 +263,7 @@ input[type="submit"] {
       margin: 8px;
       padding: 8px;
       margin-bottom: 25px;
-      border: 3px double black;
+      border: 3px double $main_highlight_support;
       text-align: center;
       .destroy-link {
         margin-top: 20px;
@@ -280,7 +280,7 @@ input[type="submit"] {
       }
       .image-content img {
         width: 200px;
-        border: 3px double black;
+        border: 3px double $main_highlight_support;
       }
     }
     ::after {
@@ -290,5 +290,5 @@ input[type="submit"] {
 }
 
 .warning {
-  color: orangered;
+  color: $warning;
 }
