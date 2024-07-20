@@ -68,6 +68,5 @@ end
 
 
 gem 'bcrypt', '~> 3.1.7'
-gem 'image_processing', '~> 1.2'
 
 gem "dartsass-rails", "~> 0.5.0"
