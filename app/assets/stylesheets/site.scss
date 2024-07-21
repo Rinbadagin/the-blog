@@ -1,1 +1,87 @@
-@use "default";
+$global_radius: 24px;
+$main_highlight: green;
+$main_active: black;
+$main_highlight_support: darkgreen;
+$hover_a: rgb(38, 21, 21);
+$hidden_article: gray;
+$warning: red;
+$content_a: cornflowerblue;
+$global_font: "opendyslexic";
+$main_background: white;
+$bubble_background: pink;
+
+@use "default" with (
+  $main_highlight: $main_highlight,
+  $main_active: $main_active,
+  $main_highlight_support: $main_highlight_support,
+  $hover_a: $hover_a,
+  $hidden_article: $hidden_article,
+  $warning: $warning,
+  $content_a: $content_a,
+  $global_font: $global_font,
+  $main_background: $main_background
+);
+:not(body, iframe, html) {
+  border-radius: $global_radius;
+}
+.sidebar {
+  width: calc(max(25%, 250px));
+  padding: 1em;
+  ul {
+    margin-left: 12px;
+  }
+  li {
+    margin-left: 12px;
+  }
+  > details {
+    border: 2px solid $main_highlight;
+    margin: 4px;
+    padding: 1em;
+  }
+  > div {
+    text-align: center;
+    border: 2px solid $main_highlight;
+    margin: 4px;
+    a {
+      display: block;
+    }
+  }
+}
+#content,
+.container {
+  border: 2px solid green;
+  margin: 1em;
+  padding: 1em;
+  box-sizing: border-box;
+  & .entry-blurb {
+    border-style: solid;
+    border-width: 50px;
+    border-image: url(guestbook_bubble_border.png) 3 3 6 3 repeat repeat;
+    image-rendering: pixelated;
+    background-color: #ffb3ca;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    text-align: center;
+  }
+}
+
+a,
+a.link-button {
+  color: $main_highlight;
+  text-decoration: none;
+  &:hover {
+    color: $hover_a;
+  }
+  &:visited {
+    color: $main_highlight;
+  }
+}
+.link-button {
+  border: 2px solid $main_highlight;
+  margin: 6px;
+  padding: 4px;
+}
+
+#current-article-link {
+  text-decoration: underline;
+}
