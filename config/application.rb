@@ -26,5 +26,6 @@ module Blog
     
     # Add your host here.
     # config.hosts << "example.com"
+    config.session_store :cookie_store, expire_after: 3.months
   end
 end
