@@ -85,3 +85,11 @@ a.link-button {
 #current-article-link {
   text-decoration: underline;
 }
+#page {
+  justify-content: space-between;
+}
+
+form {
+  border: 2px solid $bubble_background;
+  padding: 1em;
+}
