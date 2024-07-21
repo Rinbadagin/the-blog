@@ -1,7 +1,7 @@
 $main_highlight: darkslategray !default;
 $main_active: #111111 !default;
 $main_highlight_support: black !default;
-$color_4: rgb(38, 21, 21) !default;
+$hover_a: rgb(38, 21, 21) !default;
 $hidden_article: gray !default;
 $content_a: cornflowerblue !default;
 $global_font: "opendyslexic" !default;
@@ -149,7 +149,7 @@ a {
     color: $main_highlight_support;
   }
   &:hover {
-    color: $color_4;
+    color: $hover_a;
   }
   &:active {
     color: $main_active;
