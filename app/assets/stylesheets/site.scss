@@ -42,9 +42,9 @@ $bubble_background: pink;
     text-align: center;
     border: 2px solid $main_highlight;
     margin: 4px;
-    a {
-      display: block;
-    }
+  }
+  a { 
+    display: block;
   }
 }
 #content,
@@ -92,4 +92,47 @@ a.link-button {
 form {
   border: 2px solid $bubble_background;
   padding: 1em;
+}
+#content .datetime-footer {
+  position: initial;
+  height: initial;
+}
+
+@media only screen and (max-width: 800px) {
+  #page {
+    flex-direction: column;
+    .sidebar:first {
+      order:1;
+    }
+    article {
+      order: 3;
+    }
+    .sidebar {
+      width: initial;
+      order: 2;
+      a {
+        background-color: rgba(0.1,0.1,0.1,0.02);
+        padding-left: 8px;
+        padding-right: 8px;
+        margin: 4px;
+      }
+    }
+    .guestbook-index {
+      order: 3;
+    }
+    form {
+      text-align: center;
+      order: 3;
+      margin: $global_radius;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  header {
+    img, marquee {
+      display: none;
+    }
+    justify-content: center;
+  }
 }
