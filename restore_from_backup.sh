@@ -12,7 +12,7 @@ if [ ! $# -eq 2 ]; then
 	exit 1
 fi
 
-TIMESTAMP=$1
+TIMESTAMP=$2
 
 # Create a temporary directory for download
 TEMP_DOWNLOAD_DIR=$(mktemp -d)
