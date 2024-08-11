@@ -487,10 +487,12 @@ input[type="submit"] {
       & td.current {
         background-color: rgba($main_highlight, 0.1);
       }
+      td {
+        cursor: pointer;
+      }
     }
 
     td {
-      padding: 10px;
       color: $main_highlight;
     }
      
