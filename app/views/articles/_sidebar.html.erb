@@ -33,10 +33,12 @@
       <script defer>
         {
           let current_article = document.getElementById("current-article-link")
-          let parentNode = current_article.parentNode
-          while (parentNode) {
-            parentNode.open = "true"
-            parentNode = parentNode.parentNode
+          if (current_article) {
+            let parentNode = current_article.parentNode
+            while (parentNode) {
+              parentNode.open = "true"
+              parentNode = parentNode.parentNode
+            }
           }
         }
       </script>

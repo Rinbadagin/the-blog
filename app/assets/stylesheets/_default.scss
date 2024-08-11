@@ -7,6 +7,7 @@ $content_a: cornflowerblue !default;
 $global_font: "opendyslexic" !default;
 $main_background: beige !default;
 $warning: red !default;
+$main_music_highlight: black !default;
 
 @font-face {
   font-family: "opendyslexic";
@@ -290,4 +291,251 @@ input[type="submit"] {
 
 .warning {
   color: $warning;
+}
+
+// Variables
+
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin button-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+@mixin svg-icon {
+  content: "";
+  width: 24px;
+  height: 24px;
+}
+
+// Main Styles
+.music-player {
+  background: $main_background;
+  padding: 0px 20px;
+  color: $main_highlight;
+  font-family: $global_font;
+  border-bottom: 1px solid $main_highlight;
+
+  &__container {
+    @include flex-center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  &__controls {
+    @include flex-center;
+
+    &-button {
+      &.previous::before {
+        @include svg-icon;
+        background-image: url('music_previous');
+      }
+      &.playPause {
+        &.pause::before {
+          @include svg-icon;
+          background-image: url('music_pause');
+        }
+        &.play::before {
+          @include svg-icon;
+          background-image: url('music_play');
+        }
+      }
+      &.next::before {
+        @include svg-icon;
+        background-image: url('music_next');
+      }
+      @include button-reset;
+      @include flex-center;
+      margin: 0 5px;
+    }
+  }
+
+  &__track-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    margin: 0 10px;
+    font-weight: bold;
+  }
+
+  &__progress {
+    flex-grow: 1;
+    margin: 0 10px;
+    @include flex-center;
+
+    &-bar {
+      flex-grow: 1;
+      margin: 0 10px;
+      -webkit-appearance: none;
+      background: rgba($main_music_highlight, 0.6);
+      border: 1px solid rgba($main_music_highlight, 1);
+      outline: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      border-radius: 5px;
+      height: 5px;
+      min-width: 40px;
+
+      &::-webkit-slider-thumb, &::-moz-range-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        background: $main_highlight;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 1px solid $main_highlight_support;
+      }
+    }
+
+    &-time {
+      font-size: 12px;
+      min-width: 40px;
+      text-align: center;
+    }
+  }
+
+  &__volume {
+    @include flex-center;
+
+    &-slider {
+      width: 80px;
+      margin-left: 5px;
+      background: rgba($main_music_highlight, 0.6);
+      border: 1px solid rgba($main_music_highlight, 1);
+      outline: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      border-radius: 5px;
+      height: 5px;
+      min-width: 40px;
+
+      &::-webkit-slider-thumb, &::-moz-range-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        background: $main_highlight;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 1px solid $main_highlight_support;
+      }
+    }
+
+    &-button {
+      @include button-reset;
+      @include flex-center;
+
+      &.muteUnmute {
+        &.mute::before {
+          @include svg-icon;
+          background-image: url('music_mute');
+        }
+        &.unMute::before {
+          @include svg-icon;
+          background-image: url('music_unmute');
+        }
+      }
+    }
+  }
+
+  .toggle::before {
+    @include svg-icon;
+    background-image: url('music_burger');
+  }
+  .closer::before {
+    @include svg-icon;
+    background-image: url('music_close');
+  }
+
+  #music-list {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    background: $main_background;
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 300px;
+    transform: translateX(100%);
+    border-left: 1px solid $main_highlight;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    tr {
+      border-bottom: 1px solid rgba($main_highlight, 0.2);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      & td.current {
+        background-color: rgba($main_highlight, 0.1);
+      }
+    }
+
+    td {
+      padding: 10px;
+      color: $main_highlight;
+    }
+     
+  }
+}
+
+
+// Media Query
+@media (max-width: 768px) {
+  .music-player {
+    padding: 10px;
+
+    &__container {
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    &__progress {
+      width: 100%;
+      margin: 5px 0;
+      text-align: center;
+    }
+
+    &__controls {
+      justify-content: center;
+    }
+
+    &__progress {
+      order: 2;
+    }
+
+    &__volume {
+      order: 1;
+      justify-content: center;
+    }
+  }
+}
+
+// Media Queries
+@media (max-width: 300px) {
+  .music-player {
+    #music-list {
+      width: 100%;
+    }
+  }
 }

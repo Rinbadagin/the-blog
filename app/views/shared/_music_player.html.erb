@@ -1,0 +1,31 @@
+<%= turbo_frame_tag "music_player", data: { turbo_permanent: true } do %>
+  <div id="music-player" data-controller="music-player" class="music-player">
+    <div class="music-player__container">
+      <div class="music-player__controls">
+        <button class="music-player__controls-button toggle" data-action="click->music-player#toggleList"></button>
+        <button class="music-player__controls-button previous" data-action="click->music-player#previousTrack" aria-label="Previous"></button>
+        <button class="music-player__controls-button playPause" data-music-player-target="playPause" data-action="click->music-player#togglePlay" aria-label="Play"></button>
+        <button class="music-player__controls-button next" data-action="click->music-player#nextTrack" aria-label="Next"></button>
+      </div>
+      <div class="music-player__track-info" data-music-player-target="trackName"></div>
+      <div class="music-player__progress">
+        <span class="music-player__progress-time" data-music-player-target="currentTime">0:00</span>
+        <input type="range" class="music-player__progress-bar" value="0" min="0" max="100" step="0.1" data-music-player-target="progress" data-action="input->music-player#seek">
+        <span class="music-player__progress-time" data-music-player-target="duration">0:00</span>
+      </div>
+      <div class="music-player__volume">
+        <button class="music-player__volume-button muteUnmute" data-music-player-target="muteUnmute" data-action="click->music-player#toggleMute" aria-label="Mute"></button>
+        <input type="range" class="music-player__volume-slider" min="0" max="1" step="0.1" value="1" data-music-player-target="volume" data-action="input->music-player#setVolume">
+      </div>
+    </div>
+    <audio id="audio-element"></audio>
+    <div id="music-list" class="music-list closed" data-music-player-target="musicList">
+      <div class="music-list__container">
+        <button class="music-player__controls-button closer" data-action="click->music-player#toggleList"></button>
+        <table data-music-player-target="songTable">
+        </table>
+      </div>
+    </div>
+  </div>
+  
+<% end %>

@@ -9,6 +9,7 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
+    <%= render 'shared/music_player' %>
     <%= render "articles/header"%>
     <div id="page">
       <%= render "articles/sidebar", article: @sidebar_article %>

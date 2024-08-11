@@ -1,0 +1,11 @@
+<table>
+    <% @tracks.each do |track| %>
+  <tr>
+      
+  <td><%= track[:name] %>
+  </td>
+  <td><a href="<%= track[:url] %>">url</a>
+  </td>
+  </tr>
+    <% end %>
+</table>
