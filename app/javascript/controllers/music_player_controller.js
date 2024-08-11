@@ -41,6 +41,8 @@ export default class MusicPlayer extends Controller {
         thisContext.togglePlay();
       } else if (event.code === 'KeyM') {
         thisContext.toggleMute();
+      } else if (event.code === 'KeyL') {
+        thisContext.toggleList();
       } else if (event.code === 'ArrowRight') {
         thisContext.nextTrack()
       } else if (event.code === 'ArrowLeft') {
