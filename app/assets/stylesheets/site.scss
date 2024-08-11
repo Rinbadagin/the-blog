@@ -74,13 +74,20 @@ header {
 }
 
 .music-player {
-    // background: rgba($main_highlight, 0.3);
-    border-bottom: 1px solid $main_active;
-    color: $main_secondary;
-    #music-list {
-        border-left: 1px solid $main_active;
-    }
-    input[type="range"] {
-        border: 1px solid $main_secondary;
-    }
+  // background: rgba($main_highlight, 0.3);
+  border-bottom: 1px solid $main_active;
+  color: $main_secondary;
+  #music-list {
+      border-left: 1px solid $main_active;
+  }
+  input[type="range"] {
+      border: 1px solid $main_secondary;
+      opacity: 1;
+      &::-moz-range-thumb, &::-webkit-slider-thumb {
+          border-width: 2px;
+      }
+  }
+  &__volume {
+    order: initial;
+  }
 }
