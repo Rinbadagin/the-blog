@@ -8,6 +8,7 @@ export default class MusicPlayer extends Controller {
     this.element.dataset.connected = 'true'
 
     this.audioElement = this.element.querySelector('#audio-element')
+    this.audioElement.volume = 0.5;
     this.tracks = []
     this.currentTrackIndex = 0
 
@@ -37,16 +38,18 @@ export default class MusicPlayer extends Controller {
     let thisContext = this;
 
     document.addEventListener('keydown', function(event) {
-      if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
-        thisContext.togglePlay();
-      } else if (event.code === 'KeyM') {
-        thisContext.toggleMute();
-      } else if (event.code === 'KeyL') {
-        thisContext.toggleList();
-      } else if (event.code === 'ArrowRight') {
-        thisContext.nextTrack()
-      } else if (event.code === 'ArrowLeft') {
-        thisContext.previousTrack()
+      if (document.activeElement.tagName.toLowerCase() !== "input") {
+        if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
+          thisContext.togglePlay();
+        } else if (event.code === 'KeyM') {
+          thisContext.toggleMute();
+        } else if (event.code === 'KeyL') {
+          thisContext.toggleList();
+        } else if (event.code === 'ArrowRight') {
+          thisContext.nextTrack()
+        } else if (event.code === 'ArrowLeft') {
+          thisContext.previousTrack()
+        }
       }
     });
 
