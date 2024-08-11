@@ -38,17 +38,22 @@ export default class MusicPlayer extends Controller {
     let thisContext = this;
 
     document.addEventListener('keydown', function(event) {
-      if (document.activeElement.tagName.toLowerCase() !== "input") {
+      if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) && !["text", "password"].includes(document.activeElement.type)) {
         if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
           thisContext.togglePlay();
+          event.preventDefault();
         } else if (event.code === 'KeyM') {
           thisContext.toggleMute();
+          event.preventDefault();
         } else if (event.code === 'KeyL') {
           thisContext.toggleList();
+          event.preventDefault();
         } else if (event.code === 'ArrowRight') {
           thisContext.nextTrack()
+          event.preventDefault();
         } else if (event.code === 'ArrowLeft') {
           thisContext.previousTrack()
+          event.preventDefault();
         }
       }
     });
