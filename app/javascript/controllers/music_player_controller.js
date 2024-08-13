@@ -37,6 +37,8 @@ export default class MusicPlayer extends Controller {
     this.updateMuteButtonState();
     let thisContext = this;
 
+    this.audioElement.addEventListener('ended', ()=>{thisContext.nextTrack()});
+
     document.addEventListener('keydown', function(event) {
       if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) && !["text", "password"].includes(document.activeElement.type)) {
         if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
