@@ -14,6 +14,7 @@ export default class MusicPlayer extends Controller {
     this.tracks = []
     this.currentTrackIndex = 0
     this.disableSkipToEnd = false
+    this.isSeeking = false
 
     this.fetchTracks()
     this.updateButtonState()
@@ -30,17 +31,36 @@ export default class MusicPlayer extends Controller {
         'previoustrack',
         ()=>{this.previousTrack()}
     );
+    let thisContext = this;
 
     this.progressTarget.addEventListener('input', this.seek.bind(this));
+    this.progressTarget.addEventListener('pointerdown', ()=>{
+      console.log("pointerdown")
+      thisContext.isSeeking = true;
+    });
+    this.progressTarget.addEventListener('pointerup', ()=>{
+      console.log("pup")
+      thisContext.isSeeking = false;
+      if(thisContext.audioElement.currentTime >= thisContext.audioElement.duration) {
+        thisContext.nextTrack()
+      }
+    });
+    this.progressTarget.addEventListener('pointercancel', ()=>{
+      console.log("pcan")
+      thisContext.isSeeking = false;
+
+      if(thisContext.audioElement.currentTime >= thisContext.audioElement.duration) {
+        thisContext.nextTrack()
+      }
+    });
     this.volumeTarget.addEventListener('input', this.setVolume.bind(this));
     
     this.audioElement.addEventListener('timeupdate', this.updateProgress.bind(this));
     this.audioElement.addEventListener('loadedmetadata', this.updateDuration.bind(this));
     
     this.updateMuteButtonState();
-    let thisContext = this;
 
-    this.audioElement.addEventListener('ended', ()=>{thisContext.nextTrack()});
+    this.audioElement.addEventListener('ended', ()=>{if(!thisContext.isSeeking){thisContext.nextTrack()}});
 
     document.addEventListener('keydown', function(event) {
       if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) || !["text", "password"].includes(document.activeElement.type)) {
@@ -135,6 +155,9 @@ export default class MusicPlayer extends Controller {
     const time = (this.audioElement.duration / 100) * event.target.value;
     if (!Number.isNaN(time) && !(event.target.value >= 100 && this.disableSkipToEnd)){
       this.audioElement.currentTime = time;
+      if (this.audioElement.paused) {
+        this.audioElement.play()
+      }
     } else {
       event.preventDefault()
     }
