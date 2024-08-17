@@ -85,6 +85,7 @@ a.link-button {
 #current-article-link {
   text-decoration: underline;
 }
+
 #page {
   justify-content: space-between;
 }
@@ -93,9 +94,18 @@ form {
   border: 2px solid $bubble_background;
   padding: 1em;
 }
+
 #content .datetime-footer {
   position: initial;
   height: initial;
+}
+
+.music-player {
+  &__progress-bar {
+    padding: 4px 0px;
+  }
+  border-top: 1px solid $main_highlight;
+  border-radius: 0px 0px $global_radius $global_radius;
 }
 
 @media only screen and (max-width: 800px) {
