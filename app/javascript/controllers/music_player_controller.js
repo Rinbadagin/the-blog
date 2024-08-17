@@ -1,5 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
+const debounceDisableSkipToEndTimeout = 2000;
+
 export default class MusicPlayer extends Controller {
   static targets = [ "playPause", "trackName", "progress", "currentTime", "duration", "volume", "muteUnmute", "songTable", "musicList" ]
 
@@ -11,6 +13,7 @@ export default class MusicPlayer extends Controller {
     this.audioElement.volume = 0.5;
     this.tracks = []
     this.currentTrackIndex = 0
+    this.disableSkipToEnd = false
 
     this.fetchTracks()
     this.updateButtonState()
@@ -40,7 +43,7 @@ export default class MusicPlayer extends Controller {
     this.audioElement.addEventListener('ended', ()=>{thisContext.nextTrack()});
 
     document.addEventListener('keydown', function(event) {
-      if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) && !["text", "password"].includes(document.activeElement.type)) {
+      if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) || !["text", "password"].includes(document.activeElement.type)) {
         if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
           thisContext.togglePlay();
           event.preventDefault();
@@ -51,10 +54,22 @@ export default class MusicPlayer extends Controller {
           thisContext.toggleList();
           event.preventDefault();
         } else if (event.code === 'ArrowRight') {
-          thisContext.nextTrack()
+          if(!thisContext.disableSkipToEnd) {
+            thisContext.nextTrack()
+          }
+          if(!thisContext.disableSkipToEnd) {
+            thisContext.disableSkipToEnd = true;
+            window.setTimeout(()=>{thisContext.disableSkipToEnd = false;}, debounceDisableSkipToEndTimeout)
+          }
           event.preventDefault();
         } else if (event.code === 'ArrowLeft') {
-          thisContext.previousTrack()
+          if(!thisContext.disableSkipToEnd) {
+            thisContext.previousTrack()
+          }
+          if(!thisContext.disableSkipToEnd) {
+            thisContext.disableSkipToEnd = true;
+            window.setTimeout(()=>{thisContext.disableSkipToEnd = false;}, debounceDisableSkipToEndTimeout)
+          }
           event.preventDefault();
         }
       }
@@ -118,7 +133,17 @@ export default class MusicPlayer extends Controller {
 
   seek(event) {
     const time = (this.audioElement.duration / 100) * event.target.value;
-    this.audioElement.currentTime = time;
+    if (!Number.isNaN(time) && !(event.target.value >= 100 && this.disableSkipToEnd)){
+      this.audioElement.currentTime = time;
+    } else {
+      event.preventDefault()
+    }
+
+    if(event.target.value >= 100 && !this.disableSkipToEnd) {
+      this.disableSkipToEnd = true;
+      let thisContext = this;
+      window.setTimeout(()=>{thisContext.disableSkipToEnd = false;}, debounceDisableSkipToEndTimeout)
+    }
   }
   
   setVolume(event) {
