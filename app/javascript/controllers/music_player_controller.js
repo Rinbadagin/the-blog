@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-const debounceDisableSkipToEndTimeout = 2000;
+const debounceDisableSkipToEndTimeout = 500;
 
 export default class MusicPlayer extends Controller {
   static targets = [ "playPause", "trackName", "progress", "currentTime", "duration", "volume", "muteUnmute", "songTable", "musicList" ]
