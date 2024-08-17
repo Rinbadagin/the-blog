@@ -101,11 +101,13 @@ form {
 }
 
 .music-player {
-  &__progress-bar {
-    padding: 4px 0px;
-  }
   border-top: 1px solid $main_highlight;
   border-radius: 0px 0px $global_radius $global_radius;
+}
+
+input[type=range] {
+  padding: 4px 0px;
+  border: none;
 }
 
 @media only screen and (max-width: 800px) {
