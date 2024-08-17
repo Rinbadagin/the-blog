@@ -162,7 +162,7 @@ export default class MusicPlayer extends Controller {
       event.preventDefault()
     }
 
-    if(event.target.value >= 100 && !this.disableSkipToEnd) {
+    if(event.target.value >= 100 && !this.disableSkipToEnd && !this.isSeeking) {
       this.disableSkipToEnd = true;
       let thisContext = this;
       window.setTimeout(()=>{thisContext.disableSkipToEnd = false;}, debounceDisableSkipToEndTimeout)
