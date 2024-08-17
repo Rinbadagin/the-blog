@@ -15,6 +15,7 @@ export default class MusicPlayer extends Controller {
     this.currentTrackIndex = 0
     this.disableSkipToEnd = false
     this.isSeeking = false
+    this.playingDuringSeek = false
 
     this.fetchTracks()
     this.updateButtonState()
@@ -37,6 +38,7 @@ export default class MusicPlayer extends Controller {
     this.progressTarget.addEventListener('pointerdown', ()=>{
       console.log("pointerdown")
       thisContext.isSeeking = true;
+      thisContext.playingDuringSeek = thisContext.audioElement.paused
     });
     this.progressTarget.addEventListener('pointerup', ()=>{
       console.log("pup")
@@ -118,6 +120,9 @@ export default class MusicPlayer extends Controller {
   }
 
   togglePlay() {
+    if(this.isSeeking) {
+      this.playingDuringSeek = !this.audioElement.paused
+    }
     if (this.audioElement.paused) {
       this.audioElement.play()
     } else {
@@ -159,7 +164,8 @@ export default class MusicPlayer extends Controller {
     const time = (this.audioElement.duration / 100) * event.target.value;
     if (!Number.isNaN(time) && !(event.target.value >= 100 && this.disableSkipToEnd)){
       this.audioElement.currentTime = time;
-      if (this.audioElement.paused && !this.isSeeking) {
+      if (this.audioElement.paused && !(this.isSeeking && this.playingDuringSeek)) {
+        console.log("PLAYING")
         this.audioElement.play()
       }
     } else {
