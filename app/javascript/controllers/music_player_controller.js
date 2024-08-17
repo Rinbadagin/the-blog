@@ -41,16 +41,20 @@ export default class MusicPlayer extends Controller {
     this.progressTarget.addEventListener('pointerup', ()=>{
       console.log("pup")
       thisContext.isSeeking = false;
-      if(thisContext.audioElement.currentTime >= thisContext.audioElement.duration) {
+      if (thisContext.audioElement.currentTime >= thisContext.audioElement.duration) {
         thisContext.nextTrack()
+      } else if (thisContext.audioElement.paused) {
+        thisContext.audioElement.play()
       }
     });
     this.progressTarget.addEventListener('pointercancel', ()=>{
       console.log("pcan")
       thisContext.isSeeking = false;
 
-      if(thisContext.audioElement.currentTime >= thisContext.audioElement.duration) {
+      if (thisContext.audioElement.currentTime >= thisContext.audioElement.duration) {
         thisContext.nextTrack()
+      } else if (thisContext.audioElement.paused) {
+        thisContext.audioElement.play()
       }
     });
     this.volumeTarget.addEventListener('input', this.setVolume.bind(this));
@@ -63,7 +67,7 @@ export default class MusicPlayer extends Controller {
     this.audioElement.addEventListener('ended', ()=>{if(!thisContext.isSeeking){thisContext.nextTrack()}});
 
     document.addEventListener('keydown', function(event) {
-      if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) || !["text", "password"].includes(document.activeElement.type)) {
+      if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) || ["range", "button"].includes(document.activeElement.type)) {
         if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
           thisContext.togglePlay();
           event.preventDefault();
@@ -155,7 +159,7 @@ export default class MusicPlayer extends Controller {
     const time = (this.audioElement.duration / 100) * event.target.value;
     if (!Number.isNaN(time) && !(event.target.value >= 100 && this.disableSkipToEnd)){
       this.audioElement.currentTime = time;
-      if (this.audioElement.paused) {
+      if (this.audioElement.paused && !this.isSeeking) {
         this.audioElement.play()
       }
     } else {
