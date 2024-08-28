@@ -83,7 +83,7 @@
       titlePreview.innerHTML = titleInput.value.split("/").at(-1)
     }
 
-    window.setTimeout(() => {
+    window.latestSetTimeoutFromForm = window.setTimeout(() => {
       let bodyInput = document.getElementById("article-body-input")
       let titleInput = document.getElementById("article-title-input")
 
@@ -91,12 +91,31 @@
       titleInput.addEventListener('input', updatePreview)
       updatePreview()
     }, 500)
-    window.addEventListener('load', () => {
+
+    beforeVisitHandler = (e)=>{
+      if (e.explicitOriginalTarget.tagName.toLowerCase() === "a" && !window.confirm("This page may have unsaved changes :3. Continue?")) {
+        e.preventDefault()
+      } else {
+        window.removeEventListener('turbo:before-visit', window.beforeVisitHandler)
+        window.clearTimeout(latestSetTimeoutFromForm)
+      }
+    }
+
+    formBeforeLoadHandler = () => {
       let bodyInput = document.getElementById("article-body-input")
       let titleInput = document.getElementById("article-title-input")
 
-      bodyInput.addEventListener('input', updatePreview)
-      titleInput.addEventListener('input', updatePreview)
-    })
+      if (bodyInput === null || titleInput === null) {
+        // we are not on a form page - this is just firing because we set it up to
+        window.removeEventListener('turbo:load', formBeforeLoadHandler)
+        window.removeEventListener('turbo:before-visit', window.beforeVisitHandler)
+      } else {
+        bodyInput.addEventListener('input', updatePreview)
+        titleInput.addEventListener('input', updatePreview)
+        window.addEventListener('turbo:before-visit', beforeVisitHandler)
+      }
+    }
+
+    window.addEventListener('turbo:load', formBeforeLoadHandler)
   </script>
 </div>
