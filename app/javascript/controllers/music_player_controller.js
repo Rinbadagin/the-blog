@@ -69,7 +69,7 @@ export default class MusicPlayer extends Controller {
     this.audioElement.addEventListener('ended', ()=>{if(!thisContext.isSeeking){thisContext.nextTrack()}});
 
     document.addEventListener('keydown', function(event) {
-      if (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) || ["range", "button"].includes(document.activeElement.type)) {
+      if (!event.ctrlKey && (!["input", "textarea"].includes(document.activeElement.tagName.toLowerCase()) || ["range", "button"].includes(document.activeElement.type))) {
         if (['Space', 'Enter', 'KeyP'].includes(event.code)) {
           thisContext.togglePlay();
           event.preventDefault();
