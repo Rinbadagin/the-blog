@@ -35,7 +35,30 @@ header {
 #sidebar {
   border-right-width: 10px;
   max-width: 250px;
-  width: 25%;
+  width:25%;
+
+  .sidebar-toggle {
+    color: white;
+    padding: 8px;
+    width: min(max(24px, 100%), 120px);
+    &::before{
+      margin:4px;
+      width: 100%;
+    }
+  }
+
+  &.hidden {
+    border: none;
+    width: initial;
+    .sidebar-toggle::before {
+      width: 24px;
+    }
+  }
+
+  .sidebar-toggle::before {
+    width: 100%;
+  }
+
   img {
     width: 72px;
     margin: 12px;

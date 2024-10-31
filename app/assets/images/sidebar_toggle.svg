@@ -1,11 +1,11 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M4 6H20M4 12H14M4 18H20" 
-    stroke="currentColor" 
+<svg width="120" height="24" viewBox="0 0 120 24" preserveAspectRatio="xMinYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 6H116M4 12H80M4 18H116" 
+    stroke="white" 
     stroke-width="2" 
     stroke-linecap="round"
   />
-  <path d="M17 9L14 12L17 15" 
-    stroke="currentColor" 
+  <path d="M95 9L90 12L95 15" 
+    stroke="white" 
     stroke-width="2" 
     stroke-linecap="round" 
     stroke-linejoin="round"
