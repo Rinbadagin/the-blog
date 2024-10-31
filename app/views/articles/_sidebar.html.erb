@@ -1,11 +1,11 @@
+
 <nav id="sidebar">
-  <%= image_tag "ladybird_keypress_144x.png", alt: "finger pressing a key", size: "72x72"%>
+  <button class="sidebar-toggle" onclick="togglePanel();"></button>
+  <%= image_tag "ladybird_keypress_144x.png", alt: "finger pressing a key", size: "72x72" %>
   <ul>
-    <%= 
-      raw(generate_tree_from_article_list(Article.order(:title).all, article))
-    %>
+    <%= raw(generate_tree_from_article_list(Article.order(:title).all, article)) %>
     <li class="border"></li>
-    <%= image_tag "ladybird_computer_02_144x.png", alt: "mini-computer"%>
+    <%= image_tag "ladybird_computer_02_144x.png", alt: "mini-computer" %>
     <li><%= link_to "Guestbook", guestbook_index_path, class: "controls" %></li>
     <% if request.path == guestbook_index_path %>
       <li><%= link_to "New Entry", new_guestbook_path, class: "controls" %></li>
@@ -14,23 +14,39 @@
       <% if article && article.id %>
         <li> <%= link_to "Edit", edit_article_path(article), class: "controls" %> </li>
         <li><%= link_to "Destroy", article_path(article), class: "controls", data: {
-                          turbo_method: :delete,
-                          turbo_confirm: "Are you sure you want to delete this article (#{article.title})?"
-                        } %></li>
+                                                            turbo_method: :delete,
+                                                            turbo_confirm: "Are you sure you want to delete this article (#{article.title})?",
+                                                          } %></li>
       <% end %>
       <li><%= link_to "New Article", new_article_path, class: "controls" %></li>
       <li><%= link_to "Uploads", uploads_path, class: "controls" %></li>
       <% if request.path == uploads_path %>
         <li><%= link_to "New Upload", new_upload_path, class: "controls" %></li>
       <% end %>
-      <li><%= link_to 'Log Out', logout_path, class: "controls", data: {
-                          turbo_method: :get,
-                          turbo_confirm: "Are you sure you want to log out, #{current_user.name}?"
-                        } %></li>
+      <li><%= link_to "Log Out", logout_path, class: "controls", data: {
+                                                turbo_method: :get,
+                                                turbo_confirm: "Are you sure you want to log out, #{current_user.name}?",
+                                              } %></li>
     <% else %>
-      <li><%= link_to 'Login', login_path, class: "controls" %></li>
+      <li><%= link_to "Login", login_path, class: "controls" %></li>
     <% end %>
     <script defer>
+    function togglePanel(){
+            window.panelHidden = window.panelHidden ? false : true
+            const sidebar = document.getElementById("sidebar")
+            const children = sidebar.children
+            for (let i = 1; i < children.length; i++) {
+              if (children[i].tagName.toLowerCase() !== "script") {
+              if (window.panelHidden) {
+                children[i].style.display = "none";
+                sidebar.className = "hidden";
+              } else {
+                children[i].style.display = "block";
+                sidebar.className = "";
+              }
+              }
+            }
+          }
       {
         let current_article = document.getElementById("current-article-link")
         if (current_article) {
