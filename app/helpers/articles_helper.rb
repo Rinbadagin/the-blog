@@ -5,13 +5,13 @@ module ArticlesHelper
     temp_content = ""
     mode = nil
     article.body.each_line do |line|
-      if line.include?("![") && line.include?(']') && line.split("![")[1].split("]")[0]
+      if line.include?("![") && line.include?("]") && line.split("![")[1].split("]")[0]
         #get content between first ![ and ]
         up = Upload.find_by(title: line.split("![")[1].split("]")[0])
         if up
           url = url_for(Upload.find_by(title: line.split("![")[1].split("]")[0]).content)
-          temp_content += "#{line.split("![")[0]}#{url || "Couldn't find link" }#{line.split("]")[1..].join}"
-        else 
+          temp_content += "#{line.split("![")[0]}#{url || "Couldn't find link"}#{line.split("]")[1..].join}"
+        else
           temp_content += "#{line.split("![")[0]}![Couldn't find link]#{line.split("]")[1..].join}"
         end
       else
@@ -46,10 +46,9 @@ module ArticlesHelper
           html_content += "<ul><li>#{line.delete_prefix "*"}</li></ul>"
         elsif line.starts_with? "_"
           html_content += "<p>#{line.delete_prefix "_"}</p><div class='border'></div>"
-        elsif line.equal? ""
+        elsif line.strip == ""
           html_content += "<br>"
-        else html_content += "<p>#{line}</p>"
-        end
+        else html_content += "<p>#{line}</p>"         end
       end
     end
     return html_content
