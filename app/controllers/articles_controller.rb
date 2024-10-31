@@ -1,7 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_sidebar_data
   before_action :assert_logged_in, except: %i[index show]
-  
 
   def index
     @index_article = Article.find(1)
@@ -9,7 +8,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    assert_logged_in if !@article.visibility 
+    assert_logged_in if !@article.visibility
   end
 
   def new
@@ -39,6 +38,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    if params[:id] == 1
+      render json: { error: "Article 1 cannot be deleted as it is the index" }
+      return
+    end
     @article = Article.find(params[:id])
     @article.destroy
 
@@ -46,17 +49,18 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body, :visibility)
-    end
 
-    def set_sidebar_data
-      @articles = Article.all.sort_by &:title
-    end
+  def article_params
+    params.require(:article).permit(:title, :body, :visibility)
+  end
 
-    def assert_logged_in
-      if !current_user 
-        return redirect_to login_path
-      end
+  def set_sidebar_data
+    @articles = Article.all.sort_by &:title
+  end
+
+  def assert_logged_in
+    if !current_user
+      return redirect_to login_path
     end
+  end
 end
