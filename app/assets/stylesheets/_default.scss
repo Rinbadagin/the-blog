@@ -98,9 +98,14 @@ div.border {
 }
 #content-form {
   margin: 6px;
+
+  input[type="text"] {
+    width: min(100%, 50em);
+  }
+
   textarea.article-body {
     width: 100%;
-    height: calc(100vh - 400px);
+    height: max(calc(100vh - 400px), 450px);
   }
 }
 #article-form {

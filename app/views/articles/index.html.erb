@@ -1,3 +1,8 @@
-<% @title=@index_article.title.split("/")[-1] %>
-<% @sidebart_article = @index_article %>
-<%= render "post_content", article: @index_article %>
+<% if @index_article %>
+    <% @title = @index_article.title.split("/")[-1] %>
+    <% @sidebar_article = @index_article %>
+    <%= render "post_content", article: @index_article %>
+<% else %>
+    <% @title = "Missing index article" %>
+    <h2>Missing index - please create an article if none exist.</h2>
+<% end %>
