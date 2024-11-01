@@ -1,10 +1,15 @@
 
 <nav id="sidebar">
-  <button class="sidebar-toggle" onclick="togglePanel();"></button>
-  <%= image_tag "ladybird_keypress_144x.png", alt: "finger pressing a key", size: "72x72" %>
+  <details class="main-details">
+  <summary>
+    <%# <button class="sidebar-toggle" onclick="togglePanel(this, event);">  %>
+    <%= image_tag "ladybird_keypress_144x.png", alt: "finger pressing a key", size: "72x72", class: "sidebar-toggle" %>
+    <%# </button> %>
+  </summary>
+
   <ul>
     <%= raw(generate_tree_from_article_list(Article.order(:title).all, article)) %>
-    <li class="border"></li>
+    <%# <li class="border"></li> %>
     <%= image_tag "ladybird_computer_02_144x.png", alt: "mini-computer" %>
     <li><%= link_to "Guestbook", guestbook_index_path, class: "controls" %></li>
     <% if request.path == guestbook_index_path %>
@@ -32,33 +37,47 @@
       <li><%= link_to "Login", login_path, class: "controls" %></li>
     <% end %>
     <script defer>
-    function togglePanel(){
-            window.panelHidden = window.panelHidden ? false : true
-            const sidebar = document.getElementById("sidebar")
-            const children = sidebar.children
-            for (let i = 1; i < children.length; i++) {
-              if (children[i].tagName.toLowerCase() !== "script") {
-              if (window.panelHidden) {
-                children[i].style.display = "none";
-                sidebar.className = "hidden";
-              } else {
-                children[i].style.display = "block";
-                sidebar.className = "";
-              }
-              }
-            }
+    function togglePanel(element, event){
+          event.target.parentNode.click();
+            // window.panelHidden = window.panelHidden ? false : true
+            // const sidebar = document.getElementById("sidebar")
+            // const children = sidebar.children
+            // for (let i = 1; i < children.length; i++) {
+            //   if (children[i].tagName.toLowerCase() !== "script") {
+            //   if (window.panelHidden) {
+            //     children[i].style.display = "none";
+            //     sidebar.className = "hidden";
+            //   } else {
+            //     children[i].style.display = "block";
+            //     sidebar.className = "";
+            //   }
+            //   }
+            // }
           }
       {
-        let current_article = document.getElementById("current-article-link")
-        if (current_article) {
-          let parentNode = current_article.parentNode
-          while (parentNode) {
-            parentNode.open = "true"
-            parentNode = parentNode.parentNode
+        function openDetails(ignoreMain){
+          console.log("Running openDetails", ignoreMain)
+          let current_article = document.getElementById("current-article-link")
+          if (current_article) {
+            let parentNode = current_article.parentNode
+            while (parentNode) {
+              if (ignoreMain == true && parentNode.className.includes("main-details")) {
+                break
+              }
+              console.log(parentNode)
+              parentNode.open = "true"
+              parentNode = parentNode.parentNode
+            }
           }
+          window.removeEventListener("turbo:load",openDetails)
+          window.addEventListener("turbo:load", openDetails)
         }
+        window.addEventListener("load", ()=>{openDetails(true)})
+        window.addEventListener("turbo:load", openDetails)
+
       }
     </script>
   </ul>
   <%= image_tag "ladybird_smiling_computer_144x.png", alt: "smiling computer", size: "72x72" %>
+  </details>
 </nav>

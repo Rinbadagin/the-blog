@@ -6,8 +6,11 @@ $main_highlight_support: $main_active;
 $hidden_article: gray;
 $warning: red;
 $content_a: cornflowerblue;
-$global_font: "Times New Roman";
+$global_font: "Newsreader";
 $main_background: black;
+$secondary_background: #151115;
+
+$border-size: 20px;
 
 @use "default" with (
   $main_highlight: $main_highlight,
@@ -27,32 +30,91 @@ body {
   min-height: 100vh;
 }
 header {
+  margin-top: 35px;
   border-bottom: 7.5px double $main_highlight;
   color: $main_secondary;
   justify-content: center;
   text-decoration: underline;
+  .center {
+    color: $main_secondary;
+  }
+  .second {
+    color: $main_highlight;
+  }
+  .third {
+    color: $main_active;
+  }
+}
+
+#page {
+  justify-content: flex-start;
+  width: 100%;
+  flex-grow: 1;
+  &:not(:has(.main-details[open])) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.site-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 #sidebar {
-  border-right-width: 10px;
+  border: solid;
   max-width: 250px;
-  width:25%;
+  // width: max(25%, 72px);
+  flex-shrink: 0;
+  background-color: $secondary_background;
+  border-width: $border-size;
+  background-clip: padding-box;
+
+  -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  -webkit-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  -o-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  image-rendering: pixelated;
+
+  &:not(:has(.main-details[open])) {
+    padding: 0px;
+  }
+
+  & > details:first-child {
+    &:not([open]) {
+      & img, & .sidebar-toggle {
+        width: 36px;
+      }
+    }
+    & > summary:first-child {
+      // should be the summary element
+      display: block;
+    }
+
+  }
 
   .sidebar-toggle {
-    color: white;
-    padding: 8px;
-    width: min(max(24px, 100%), 120px);
-    &::before{
-      margin:4px;
-      width: 100%;
+    &, & img, &::before {
+      width: initial;
+      height: initial;
+      background-color: initial;
+      padding: 0;
+      margin: 0 !important;
+      display: block;
+      width: 72px;
     }
   }
 
   &.hidden {
-    border: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
     width: initial;
-    .sidebar-toggle::before {
-      width: 24px;
+    .sidebar-toggle, .sidebar-toggle img {
+      width: 48px;
     }
   }
 
@@ -71,6 +133,8 @@ header {
   }
   li {
     margin-left: 12px;
+    overflow-wrap: break-word;
+    word-break: normal;
   }
   ul {
     margin-left: 0px;
@@ -89,15 +153,52 @@ header {
   border-bottom: 10px double $main_secondary;
 }
 
+#content {
+  margin: 0px auto;
+  padding: 8px;
+  max-width: 600px;
+  flex: 1;
+  min-width: 0;
+  text-align: justify;
+  text-justify: inter-word;
+  background-color: $secondary_background;
+  box-sizing: border-box;
+  background-clip: padding-box;
+  border-style: solid;
+  border-width: $border-size;
+
+
+  -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  -webkit-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  -o-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  image-rendering: pixelated;
+}
+
 #content div:first-of-type h2:first-of-type {
   color: $main_secondary;
 }
 
 .entry-blurb {
-  border: 7.5px double #f5abb9;
+  background-color: $secondary_background;
+  background-clip: padding-box;
+  border-style: solid;
+  border-width: $border-size;
+
+
+  -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  -webkit-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  -o-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  border-image: url(page-border.png) 10 10 10 10 repeat repeat;
 }
 
 .music-player {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  z-index: 10;
+  padding-left: 4px;
+  padding-right: 4px;
   // background: rgba($main_highlight, 0.3);
   border-bottom: 1px solid $main_active;
   color: $main_secondary;
@@ -114,4 +215,168 @@ header {
   &__volume {
     order: initial;
   }
+}
+
+// @media only screen and (max-width: 768px) {
+//   #page {
+//     flex-direction: column;
+//     #sidebar {
+//       border-left: none;
+//       border-top: none;
+//       border-bottom: none;
+//       width: initial;
+//       .sidebar-toggle, .sidebar-toggle img {
+//         width: 48px;
+//       }
+//       &.hidden {
+//         border: solid;
+//         max-width: 250px;
+//         width: max(25%, 72px);
+//         * {
+//           display: block;
+//         }
+//       }
+//       *:not(.sidebar-toggle, .sidebar-toggle img) {
+//         display: none;
+//       }
+//     }
+//   }
+// }
+
+/* 6pt Optical Size */
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader6pt-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  size-adjust: 6pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader6pt-Italic.ttf");
+  font-style: italic;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  size-adjust: 6pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader6pt-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  font-optical-sizing: auto;
+  size-adjust: 6pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader6pt-Medium.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  size-adjust: 6pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader6pt-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  size-adjust: 6pt;
+}
+
+/* 16pt Optical Size */
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader16pt-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  size-adjust: 16pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader16pt-Italic.ttf");
+  font-style: italic;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  size-adjust: 16pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader16pt-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  font-optical-sizing: auto;
+  size-adjust: 16pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader16pt-Medium.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  size-adjust: 16pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader16pt-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  size-adjust: 16pt;
+}
+
+/* 72pt Optical Size */
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader72pt-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  size-adjust: 72pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader72pt-Italic.ttf");
+  font-style: italic;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  size-adjust: 72pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader72pt-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  font-optical-sizing: auto;
+  size-adjust: 72pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader72pt-Medium.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  size-adjust: 72pt;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("Newsreader72pt-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  size-adjust: 72pt;
 }
