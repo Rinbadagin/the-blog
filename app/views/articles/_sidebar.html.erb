@@ -61,7 +61,8 @@
           if (current_article) {
             let parentNode = current_article.parentNode
             while (parentNode) {
-              if (ignoreMain == true && parentNode.className.includes("main-details")) {
+              console.log(window.performance.now() < 2500)
+              if ((window.performance.now() < 2500 || ignoreMain == true ) && parentNode.className.includes("main-details")) {
                 break
               }
               console.log(parentNode)
@@ -72,7 +73,7 @@
           window.removeEventListener("turbo:load",openDetails)
           window.addEventListener("turbo:load", openDetails)
         }
-        window.addEventListener("load", ()=>{openDetails(true)})
+        // window.addEventListener("load", ()=>{openDetails(true)})
         window.addEventListener("turbo:load", openDetails)
 
       }
