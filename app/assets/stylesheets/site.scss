@@ -1,6 +1,7 @@
 $global_radius: 24px;
 $main_highlight: green;
 $main_active: black;
+$main_accent: #FFFFD0;
 $main_highlight_support: darkgreen;
 $hover_a: rgb(38, 21, 21);
 $hidden_article: gray;
@@ -13,6 +14,7 @@ $bubble_background: pink;
 @use "default" with (
   $main_highlight: $main_highlight,
   $main_active: $main_active,
+  $main_accent: $main_accent,
   $main_highlight_support: $main_highlight_support,
   $hover_a: $hover_a,
   $hidden_article: $hidden_article,
