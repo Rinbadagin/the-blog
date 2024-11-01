@@ -1,6 +1,7 @@
 $main_highlight: darkslategray !default;
 $main_active: #111111 !default;
 $main_highlight_support: black !default;
+$main_accent: #FFFDD0 !default;
 $hover_a: rgb(38, 21, 21) !default;
 $hidden_article: gray !default;
 $content_a: cornflowerblue !default;
@@ -113,6 +114,30 @@ div.border {
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin:auto;
+  }
+  
+  th, td {
+    padding: 0.75em;
+    text-align: left;
+    border: 1px solid $main_highlight_support;
+  }
+  
+  th {
+    background-color: $main_background;
+    font-weight: 600;
+  }
+  
+  tr:nth-child(even) {
+    background-color: $main_accent;
+  }
+  
+  tr:hover {
+    opacity: 0.6;
   }
 }
 #content-form {
