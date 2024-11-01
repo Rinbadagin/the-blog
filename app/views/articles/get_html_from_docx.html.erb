@@ -1,0 +1,65 @@
+<% @title = "Get HTML from DocX" %>
+<form onsubmit="event.preventDefault(); createArticle();">
+    <input id="docx-input" type="file" value="Select docx" onchange="convertToHtml();" accept=".docx">
+    <input type="submit" value="Create Article">
+</form>
+<script defer>
+window.currentFilename = ""
+window.currentHTML = ""
+
+function convertToHtml(){
+    const el = document.getElementById("docx-input")
+    const file = el.files[0]
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const contents = e.target.result;
+        console.log("Contents", contents)
+        console.log(window.mammoth.convertToHtml)
+        window.mammoth.convertToHtml({arrayBuffer: contents}, {convertImage: mammoth.images.imgElement(function(image) {
+                    return {src: ""}
+                })})
+            .then(function(result){
+                var html = result.value; // The generated HTML
+                var messages = result.messages; // Any messages, such as warnings during conversion
+                window.currentFilename = file.name.substring(0, file.name.length - 5)
+                window.currentHTML = `\`\`\`\n${messages.length > 1 ? `<h3>Generation warnings (feel free to remove):</h3><p>${messages}</p><h2>Generated content</h2>` : ""}\n${result.value}\n\`\`\``
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+    }
+    reader.readAsArrayBuffer(file)
+    
+}
+
+function createArticle() {
+  // Create the article data object matching the expected params structure
+  const articleData = {
+    article: {
+      title: window.currentFilename,
+      body: window.currentHTML,
+      visibility: false
+    }
+  };
+
+  fetch('/articles', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+    },
+    body: JSON.stringify(articleData)
+  })
+  .then(response => {
+    if (response.redirected) {
+      window.location.href = response.url;
+    } else if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // Handle errors here
+  });
+}
+</script>

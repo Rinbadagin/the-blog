@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new visibility: true
+    @article = Article.new visibility: false
   end
 
   def create
@@ -46,6 +46,10 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     redirect_to root_path, status: :see_other
+  end
+
+  def get_html_from_docx
+
   end
 
   private
