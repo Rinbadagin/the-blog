@@ -1,8 +1,8 @@
 $main_highlight: #f5abb9;
 $main_active: #5acffa;
 $main_secondary: white;
-$main_highlight_support: #5acffa;
-// $main_active_interactable: lightblue;
+$main_accent: rgba($main_highlight, 0.2);
+$main_highlight_support: $main_active;
 $hidden_article: gray;
 $warning: red;
 $content_a: cornflowerblue;
@@ -13,6 +13,7 @@ $main_background: black;
   $main_highlight: $main_highlight,
   $main_active: $main_active,
   // $main_secondary: white,
+  $main_accent: $main_accent,
   $main_highlight_support: $main_highlight_support,
   // $main_active_interactable: lightblue,
   $hidden_article: $hidden_article,
