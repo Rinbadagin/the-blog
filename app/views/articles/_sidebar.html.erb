@@ -19,6 +19,7 @@
                                                           } %></li>
       <% end %>
       <li><%= link_to "New Article", new_article_path, class: "controls" %></li>
+      <li><%= link_to "New Article from Doc", articles_get_html_from_docx_path, class: "controls" %></li>
       <li><%= link_to "Uploads", uploads_path, class: "controls" %></li>
       <% if request.path == uploads_path %>
         <li><%= link_to "New Upload", new_upload_path, class: "controls" %></li>
