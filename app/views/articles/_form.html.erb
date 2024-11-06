@@ -107,9 +107,9 @@
 
       if (bodyInput === null || titleInput === null) {
         // we are not on a form page - this is just firing because we set it up to
-        window.removeEventListener('turbo:load', formBeforeLoadHandler)
+window.removeEventListener('turbo:load', formBeforeLoadHandler)
         window.removeEventListener('turbo:before-visit', window.beforeVisitHandler)
-      } else {
+        } else {
         bodyInput.addEventListener('input', updatePreview)
         titleInput.addEventListener('input', updatePreview)
         window.addEventListener('turbo:before-visit', beforeVisitHandler)

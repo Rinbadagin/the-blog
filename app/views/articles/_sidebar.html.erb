@@ -55,26 +55,42 @@
             // }
           }
       {
-        function openDetails(ignoreMain){
-          console.log("Running openDetails", ignoreMain)
+        function openDetails(){
           let current_article = document.getElementById("current-article-link")
           if (current_article) {
             let parentNode = current_article.parentNode
             while (parentNode) {
-              console.log(window.performance.now() < 2500)
-              if ((window.performance.now() < 2500 || ignoreMain == true ) && parentNode.className.includes("main-details")) {
+              if (!window.detailsOpen && parentNode.className.includes("main-details")) {
                 break
               }
-              console.log(parentNode)
               parentNode.open = "true"
               parentNode = parentNode.parentNode
             }
           }
-          window.removeEventListener("turbo:load",openDetails)
-          window.addEventListener("turbo:load", openDetails)
+          document.getElementById("sidebar").querySelector(".main-details").addEventListener("toggle", (event)=>{
+            console.log("Toggled main details", event)
+            if (event.target.open) {
+              console.log("details open true")
+              window.detailsOpen = true
+            } else {
+              console.log("details open false")
+              window.detailsOpen = false
+            }
+          })
         }
-        // window.addEventListener("load", ()=>{openDetails(true)})
-        window.addEventListener("turbo:load", openDetails)
+        window.addEventListener("turbo:render", openDetails)
+        window.addEventListener("load", ()=>{
+          document.getElementById("sidebar").querySelector(".main-details").addEventListener("toggle", (event)=>{
+            console.log("Toggled main details", event)
+            if (event.target.open) {
+              console.log("details open true")
+              window.detailsOpen = true
+            } else {
+              console.log("details open false")
+              window.detailsOpen = false
+            }
+          })
+        })
 
       }
     </script>
