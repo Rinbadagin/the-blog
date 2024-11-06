@@ -6,6 +6,7 @@ $main_highlight_support: $main_active;
 $hidden_article: gray;
 $warning: red;
 $content_a: cornflowerblue;
+$hover_a: rgba(cornflowerblue, 0.8);
 $global_font: "Newsreader";
 $main_background: black;
 $secondary_background: #151115;
@@ -156,12 +157,14 @@ header {
 #content-form {
   margin: 0px auto;
   max-width: 600px;
+  width: 100%;
 }
 
 #content {
   margin: 0px auto;
   padding: 8px;
   max-width: 600px;
+  width: 100%;
   flex: 1;
   min-width: 0;
   text-align: justify;
