@@ -7,15 +7,33 @@
           ![<%= upload.title %>]
         </div>
         <div class="file-content">
-          <a href="<%= upload.content.url %>" target="_blank">View/download</a>
+          <% if upload.content.blob.nil? %>
+            <div class="error">
+              <p>Blob not found</p>
+            </div>
+          <% end %>
+          <a href="<%= upload.content.url %>" title="<%= upload.content.blob&.filename %>" target="_blank">View/download</a>
         </div>
         <div class="description">
           <%= upload.description %>
         </div>
         <% if upload.content.image? %>
-          <div class="image-content">
-            <img src="<%= url_for(upload.content.variant(resize_to_limit: [200, 200])) %>"/>
-          </div>
+          <% if upload.content.blob.nil? %>
+            <div class="error">
+              <p>Blob not found</p>
+            </div>
+          <% end %>
+          <% begin %>
+            <div class="image-content">
+              <img src="<%= url_for(upload.content.variant(resize_to_limit: [200, 200])) %>"/>
+            </div>
+          <% rescue ActiveStorage::InvariableError %>
+            <div class="image-content">
+              <p>Invariable</p>
+              <a href="<%= upload.content.url %>" target="_blank" title="<%= upload.content.blob&.filename %>">View/download</a>
+            </div>
+            <% end %>
+          
         <% end %>
         <div class="destroy-link">
           <%= link_to "Destroy", upload_path(upload), data: {

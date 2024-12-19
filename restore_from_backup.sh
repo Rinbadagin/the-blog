@@ -23,7 +23,7 @@ oci os object bulk-download \
 	--namespace $NAMESPACE \
 	--bucket-name "$1-$BUCKET_NAME" \
 	--download-dir "$TEMP_DOWNLOAD_DIR" \
-	--prefix "backups/$TIMESTAMP"
+	--prefix "backups/$TIMESTAMP" 
 
 # Check if the download was successful
 if [ ! -d "$TEMP_DOWNLOAD_DIR/backups/$TIMESTAMP" ]; then
