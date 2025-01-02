@@ -1,0 +1,45 @@
+name: Deploy to Klara's host
+run-name: Deploying to Klara's host 🚀
+on: [push]
+jobs:
+  SSH-and-Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Getting ${{ secrets.KLARA_HOST }} to update local version
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          GIT_USER: "${{ secrets.KLARA_GH_USERNAME }}"
+          GIT_PASSWORD: "${{ secrets.KLARA_GH_PAT }}"
+          BRANCH: ${{ secrets.KLARA_BRANCH }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        with:
+          host: ${{ secrets.KLARA_HOST }}
+          username: ${{ secrets.KLARA_USERNAME }}
+          key: ${{ secrets.KLARA_KEY }}
+          envs: GIT_USER,GIT_PASSWORD,BRANCH,REPO_URL
+          script: |
+            export LOCAL_DIR="/home/finn/finn-blog"
+            export GIT_USER=$GIT_USER
+            export GIT_PASSWORD=$GIT_PASSWORD
+            set -e;
+            mkdir -p "$LOCAL_DIR";
+            cd "$LOCAL_DIR" || exit;
+            echo "Setting up credentials...";
+            git config credential.helper '!f() { sleep 1; echo "username=${GIT_USER}"; echo "password=${GIT_PASSWORD}"; }; f';
+            if [ ! -d ".git" ]; then
+              echo "Error: Git repository not found in $LOCAL_DIR";
+              echo "Please clone the repository manually using:";
+              echo "git clone -b $BRANCH $REPO_URL $LOCAL_DIR";
+              exit 1;
+            fi
+            echo "Fetching origin";
+            git fetch origin "$BRANCH";
+            echo "Resetting to origin branch";
+            git reset --hard origin/$BRANCH;
+            echo "Pulling origin branch";
+            git pull origin "$BRANCH";
+            echo "Running deploy script";
+            $LOCAL_DIR/deploy/run.sh
+          debug: true
