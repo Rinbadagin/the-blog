@@ -12,3 +12,8 @@ const resizeObserver = new ResizeObserver(entries => {
 });
 
 resizeObserver.observe(document.querySelector('.music-player'));
+
+window.addEventListener("turbo:render",()=>{
+    const musicPlayerHeight = document.querySelector('.music-player').offsetHeight;
+    document.querySelector('header').style.marginTop = musicPlayerHeight + 'px';
+})

@@ -23,7 +23,7 @@ module Blog
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.hosts << "fem.nz"
+    config.hosts << "klara.nz"
     config.session_store :cookie_store, expire_after: 3.months
   end
 end

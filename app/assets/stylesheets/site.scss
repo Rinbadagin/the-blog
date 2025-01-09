@@ -1,6 +1,6 @@
-$main_highlight: #f5abb9;
-$main_active: #5acffa;
-$main_secondary: white;
+$main_highlight: black;
+$main_active: black;
+$main_secondary: black;
 $main_accent: rgba($main_highlight, 0.2);
 $main_highlight_support: $main_active;
 $hidden_article: gray;
@@ -8,8 +8,9 @@ $warning: red;
 $content_a: cornflowerblue;
 $hover_a: rgba(cornflowerblue, 0.8);
 $global_font: "Newsreader";
-$main_background: black;
-$secondary_background: #151115;
+$main_background:
+url(noise);
+$secondary_background: #C5B39A;
 
 $border-size: 20px;
 
@@ -29,21 +30,36 @@ $border-size: 20px;
 
 body {
   min-height: 100vh;
+  text-shadow: 1px 1px 1px gray;
+  filter: grayscale(50%);
 }
+
 header {
-  margin-top: 35px;
   border-bottom: 7.5px double $main_highlight;
   color: $main_secondary;
   justify-content: center;
   text-decoration: underline;
-  .center {
-    color: $main_secondary;
+  margin: 0px;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    padding-top: 14px;
+    margin-bottom: -5px;
   }
-  .second {
-    color: $main_highlight;
+
+  .sprinkle-left {
+    margin-top: -15px;
+    margin-right: -10px;
   }
-  .third {
-    color: $main_active;
+  .sprinkle-right {
+    margin-top: 10px;
+    margin-left:30px;
+  }
+  .sprinkle-above {
+    margin-top: -15px;
+    margin-left: -50px;
   }
 }
 
@@ -68,16 +84,14 @@ header {
 #sidebar {
   border: solid;
   max-width: 250px;
-  // width: max(25%, 72px);
   flex-shrink: 0;
-  background-color: $secondary_background;
   border-width: $border-size;
   background-clip: padding-box;
+  border: none;
+  margin: 8px;
+  border-right: 1px solid black;
+  transform: rotate(-0.5deg);
 
-  -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  -webkit-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  -o-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  border-image: url(page-border.png) 10 10 10 10 repeat repeat;
   image-rendering: pixelated;
 
   &:not(:has(.main-details[open])) {
@@ -127,22 +141,27 @@ header {
     width: 72px;
     margin: 12px;
   }
+
   & li:has(details),
   & li:has(.controls) {
     margin-left: 0px;
     list-style-type: none;
   }
+
   li {
     margin-left: 12px;
     overflow-wrap: break-word;
     word-break: normal;
   }
+
   ul {
     margin-left: 0px;
   }
+
   ul ul {
     margin-left: 12px;
   }
+
   li.border {
     margin: 0px;
   }
@@ -163,23 +182,40 @@ header {
 #content {
   margin: 0px auto;
   padding: 8px;
-  max-width: 600px;
   width: 100%;
   flex: 1;
   min-width: 0;
   text-align: justify;
   text-justify: inter-word;
-  background-color: $secondary_background;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   box-sizing: border-box;
   background-clip: padding-box;
-  border-style: solid;
-  border-width: $border-size;
 
-  -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  -webkit-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  -o-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  border-image: url(page-border.png) 10 10 10 10 repeat repeat;
   image-rendering: pixelated;
+  column-count: 2;
+  transform: rotate(0.3deg);
+
+  .datetime-footer {
+    vertical-align: bottom;
+    display: inline;
+    position: initial;
+    height: initial;
+    font-size: 12px;
+  }
+
+  .red-bird {
+    transform: rotate(15deg);
+    float: right;
+  }
+  .yellow-bird {
+    position: absolute;
+    right: -40px;
+  }
+
+  img {
+    filter: drop-shadow(0px 0px 1px black);
+  }
 }
 
 #content div:first-of-type h2:first-of-type {
@@ -192,11 +228,7 @@ header {
   border-style: solid;
   border-width: $border-size;
 
-
-  -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  -webkit-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  -o-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
-  border-image: url(page-border.png) 10 10 10 10 repeat repeat;
+  border: none;
 }
 
 .music-player {
@@ -223,32 +255,6 @@ header {
     order: initial;
   }
 }
-
-// @media only screen and (max-width: 768px) {
-//   #page {
-//     flex-direction: column;
-//     #sidebar {
-//       border-left: none;
-//       border-top: none;
-//       border-bottom: none;
-//       width: initial;
-//       .sidebar-toggle, .sidebar-toggle img {
-//         width: 48px;
-//       }
-//       &.hidden {
-//         border: solid;
-//         max-width: 250px;
-//         width: max(25%, 72px);
-//         * {
-//           display: block;
-//         }
-//       }
-//       *:not(.sidebar-toggle, .sidebar-toggle img) {
-//         display: none;
-//       }
-//     }
-//   }
-// }
 
 /* 6pt Optical Size */
 @font-face {
@@ -386,4 +392,15 @@ header {
   font-weight: 700;
   font-optical-sizing: auto;
   size-adjust: 72pt;
+}
+
+@media screen and (max-width: 520px) {
+  #content {
+    column-count: 1;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #content {
+    column-count: 3;
+  }
 }

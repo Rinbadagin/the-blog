@@ -1,29 +1,29 @@
-name: Deploy to Klara's host
-run-name: Deploying to Klara's host 🚀
+name: Deploy to Klara's host (klara.nz)
+run-name: Deploying to Klara's host (klara.nz) 🚀 
 on:
   push:
-    branches: finns-blog # Hard coded - cant be a variable. Remember to update whne changing KLARA_BRANCH
+    branches: klara-nz-blog # Hard coded - cant be a variable. Remember to update whne changing KLARA_BRANCH
 jobs:
   SSH-and-Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Getting ${{ vars.KLARA_HOST }} to update local version
+      - name: Getting ${{ vars.KLARA_NZ_HOST }} to update local version
         uses: appleboy/ssh-action@v1.2.0
         env:
           GIT_USER: "${{ vars.KLARA_GH_USERNAME }}"
           GIT_PASSWORD: "${{ secrets.KLARA_GH_PAT }}"
-          BRANCH: "${{ vars.KLARA_BRANCH }}"
+          BRANCH: "${{ vars.KLARA_NZ_BRANCH }}"
           REPO_URL: "${{ github.server_url }}/${{ github.repository }}"
         with:
-          host: "${{ vars.KLARA_HOST }}"
+          host: "${{ vars.KLARA_NZ_HOST }}"
           username: "${{ vars.KLARA_USERNAME }}"
           key: "${{ secrets.KLARA_SSH_MACHINE_KEY }}"
           debug: true
           envs: GIT_USER,GIT_PASSWORD,BRANCH,REPO_URL
           script: |
-            export LOCAL_DIR="/home/finn/finn-blog"
+            export LOCAL_DIR="/home/klara/klara-blog"
             export GIT_USER=$GIT_USER
             export GIT_PASSWORD=$GIT_PASSWORD
 
