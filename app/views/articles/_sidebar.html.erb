@@ -56,6 +56,9 @@
           }
       {
         function openDetails(){
+          if (window.detailsOpen) {
+            document.querySelector(".main-details").open = "true"
+          }
           let current_article = document.getElementById("current-article-link")
           if (current_article) {
             let parentNode = current_article.parentNode
