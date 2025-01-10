@@ -18,7 +18,7 @@ jobs:
           REPO_URL: "${{ github.server_url }}/${{ github.repository }}"
         with:
           host: "${{ vars.KLARA_NZ_HOST }}"
-          username: "${{ vars.KLARA_USERNAME }}"
+          username: "${{ vars.KLARA_NZ_USERNAME }}"
           key: "${{ secrets.KLARA_SSH_MACHINE_KEY }}"
           debug: true
           envs: GIT_USER,GIT_PASSWORD,BRANCH,REPO_URL
