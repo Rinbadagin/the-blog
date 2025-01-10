@@ -30,7 +30,7 @@ jobs:
             echo "Setting up environment, PATH before change: $PATH";
             echo "which ruby: $(which ruby), which bundle: $(which bundle)";
 
-            PATH="/home/finn/.rbenv/shims:$PATH";
+            PATH="/home/klara/.rbenv/shims:$PATH";
 
             echo "Setting up environment, PATH after change: $PATH";
             echo "which ruby: $(which ruby), which bundle: $(which bundle)";
