@@ -20,8 +20,9 @@
     return `${transfemring.root}/ring/${widget}/${path}`
   }
 
-  if (VALID_WIDGET_TYPES.includes(widget)) {
+  if (!VALID_WIDGET_TYPES.includes(widget)) {
     console.log("To web admin: transfem webring widget should have data-widget set to one of the following if configured (attribute will default to 'transgender'):", VALID_WIDGET_TYPES)
+    console.log(`data-widget currently set to: ${widget}`)
     widget = "transgender"
   }
 
@@ -34,7 +35,7 @@
     let next = "https://" + transfemring.sites[(transfemring.index + 1) % transfemring.sites.length];
     let prev = "https://" + transfemring.sites.at(transfemring.index - 1);
       document.currentScript.outerHTML = `
-      <div id="transfem-ring" style="display: flex; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
+      <div class="transfem-ring" style="display: flex; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
         <a href="${prev}" target="_top" style="width: 12.295%">
           <img width="100%" src="${urlWithWidget("arrow.png")}" alt="previous site">
         </a>
