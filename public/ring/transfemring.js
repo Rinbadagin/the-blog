@@ -25,12 +25,12 @@
     widget = "transgender"
   }
 
-  if (transfemring.index === -1) document.currentScript.outerHTML = `<div>
+  if (transfemring.index === -1) {
+    document.currentScript.outerHTML = `<div>
       <a href="${transfemring.root}" target="_top"><img src="${urlWithWidget("banner.png")}"></a>
       <div style="font-size: 0.75em; text-align: center">(this site isn't part of the webring... yet!)</div>
     </div>`;
-
-  else {
+  } else {
     let next = "https://" + transfemring.sites[(transfemring.index + 1) % transfemring.sites.length];
     let prev = "https://" + transfemring.sites.at(transfemring.index - 1);
       document.currentScript.outerHTML = `
