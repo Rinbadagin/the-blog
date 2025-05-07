@@ -24,7 +24,7 @@ class MarkdownParser
       return handle_list(line) if list_line?(line)
       
       case line
-      when /^(#{1,6})(?!#)/  # Headers
+      when /^(\#{1,6})/  # Headers
         level = $&.length
         text = line[level..].strip
         @html_content << "<h#{level}>#{text}</h#{level}>"

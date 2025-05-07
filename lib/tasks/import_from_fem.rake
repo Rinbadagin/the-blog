@@ -4,7 +4,7 @@
 desc 'Import posts from fem[dot]nz'
 task :import_from_fem => [ :environment ] do
     # Store old posts in a `posts` array
-    ActiveRecord::Base.establish_connection("adapter" => "sqlite3", "database" => "fem-storage/production.sqlite3")
+    ActiveRecord::Base.establish_connection("adapter" => "sqlite3", "database" => "fem-storage/development.sqlite3")
     fem_articles = []
     Article.all.each { |article| fem_articles << article }
     fem_articles = fem_articles.map { |article| 

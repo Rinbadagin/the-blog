@@ -1,4 +1,4 @@
-#!bash
+#!/bin/env bash
 
 # Configuration
 APP_DIR="storage"
