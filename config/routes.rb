@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :articles
   resources :uploads, param: :title
   resources :guestbook
+  get "/notes/submitted" => "notes#submitted"
+  resources :notes
   root "articles#index"
   # Defines the root path route ("/")
   # root "posts#index"

@@ -1,0 +1,24 @@
+<%= form_with model: note, id: "content-form" do |form| %>
+  <% if !current_user %>
+    <div>
+      <%= label_tag(:iamhuman, "Are you human? ") %><br>
+      <div>Please type '<%= @captcha_string %>'</div>
+      <%= text_field_tag(:iamhuman) %>
+      <div class="warning"><%= @errors%></div>
+    </div>
+  <% end %>
+  <%= form.label :subject %><br>
+  <%= form.text_field :subject, id: "article-title-input", :required => true %><br>
+  <%= form.label :homesite %><br>
+  <%= form.text_field :homesite, id: "article-homesite-input" %><br>
+  <%= form.label :contact %><br>
+  <%= form.text_field :contact, id: "article-contact-input" %><br>
+  <h5>(will not be visible to anyone except site admin, can be left for later contact)</h5>
+  <% if current_user %>
+    <%= form.label :public %>
+    <%= form.check_box :public, class: "article-check-box", id: "article-check-box" %><br>
+  <% end %>
+  <%= form.label :body %><br>
+  <%= form.text_area :body, class: "article-body", id: "article-body-input", :required => true %>
+  <%= form.submit %>
+<% end %>

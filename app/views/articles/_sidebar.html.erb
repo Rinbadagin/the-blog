@@ -12,6 +12,7 @@
     <%# <li class="border"></li> %>
     <%= image_tag "ladybird_computer_02_144x.png", alt: "mini-computer" %>
     <li><%= link_to "Guestbook", guestbook_index_path, class: "controls" %></li>
+    <li><%= link_to "Notes", notes_path %></li>
     <% if request.path == guestbook_index_path %>
       <li><%= link_to "New Entry", new_guestbook_path, class: "controls" %></li>
     <% end %>

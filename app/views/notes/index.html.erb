@@ -1,0 +1,24 @@
+<% @title="Note Index" %>
+<div class="note-index">
+  <nav>
+    <% if @current_page > 0%>
+      <%= link_to "Previous page", notes_path(page: (@current_page - 1))%>
+    <% end %>
+  </nav>
+  <div class="container">
+    <%= link_to "New Entry", new_note_path %>
+    <% if @notes.length == 0 %>
+      <div class="warning">
+        Looks like there's nothing here...
+      </div>
+    <% end %>
+    <% @notes.each do |entry| %>
+      <%= render "note_content", note: entry %>
+    <% end %>
+  </div>
+  <nav>
+    <% if @notes.length > 0 && @notes.length == @page_size %>
+      <%= link_to "Next page", note_index_path(page: (@current_page + 1))%>
+    <% end %>
+  </nav>
+</div>
