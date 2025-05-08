@@ -1,5 +1,4 @@
-<%= form_with model: note, id: "content-form" do |form| %>
-  <% if !current_user %>
+<% if !current_user %>
     <div>
       <%= label_tag(:iamhuman, "Are you human? ") %><br>
       <div>Please type '<%= @captcha_string %>'</div>
@@ -7,6 +6,7 @@
       <div class="warning"><%= @errors%></div>
     </div>
   <% end %>
+<%= form_with model: note, id: "content-form" do |form| %>
   <%= form.label :subject %><br>
   <%= form.text_field :subject, id: "article-title-input", :required => true %><br>
   <%= form.label :homesite %><br>
