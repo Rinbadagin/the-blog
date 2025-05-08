@@ -28,10 +28,13 @@
 
   if (transfemring.index === -1) {
     document.currentScript.outerHTML = `
-    <div class="transfem-ring" style="display: flex; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
-      <a href="${transfemring.root}" target="_top"><img src="${urlWithWidget("banner.png")}"></a>
-      <div style="font-size: 0.75em; text-align: center">(this site isn't part of the webring... yet!)</div>
-    </div>`;
+    <div>
+      <div class="transfem-ring" style="display: flex; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
+        <a href="${transfemring.root}" target="_top"><img src="${urlWithWidget("banner.png")}"></a>
+      </div>
+      (this site isn't part of the webring... yet!)
+    </div>
+    `;
   } else {
     let next = "https://" + transfemring.sites[(transfemring.index + 1) % transfemring.sites.length];
     let prev = "https://" + transfemring.sites.at(transfemring.index - 1);
