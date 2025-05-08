@@ -1,3 +1,4 @@
+// $main_highlight: rgb(255, 53, 93);
 $main_highlight: #f5abb9;
 $main_active: #5acffa;
 $main_secondary: white;
@@ -9,13 +10,13 @@ $content_a: cornflowerblue;
 $hover_a: rgba(cornflowerblue, 0.8);
 $global_font: "Newsreader";
 $main_background: black;
-$secondary_background: #151115;
+$secondary_background: #080408;
 
 $border-size: 20px;
 
 @use "default" with (
   $main_highlight: $main_highlight,
-  $main_active: $main_active,
+  $main_active: $main_secondary,
   // $main_secondary: white,
   $main_accent: $main_accent,
   $main_highlight_support: $main_highlight_support,
@@ -30,6 +31,12 @@ $border-size: 20px;
 body {
   min-height: 100vh;
 }
+
+h1,h2,h3,h4,h5,h6 {
+  border-bottom: 2px dashed white;
+  margin-bottom: 0.5em;
+}
+
 header {
   margin-top: 35px;
   border-bottom: 7.5px double $main_highlight;
@@ -184,13 +191,17 @@ header {
 
 #content div:first-of-type h2:first-of-type {
   color: $main_secondary;
+  margin-bottom: 1em;
+  border-bottom: none;
 }
 
-.entry-blurb {
+.guestbook-index .container .entry-blurb, .note-index .container .entry-blurb {
+  border-bottom: initial;
   background-color: $secondary_background;
   background-clip: padding-box;
   border-style: solid;
   border-width: $border-size;
+  image-rendering: pixelated;
 
 
   -moz-border-image: url(page-border.png) 10 10 10 10 repeat repeat;
