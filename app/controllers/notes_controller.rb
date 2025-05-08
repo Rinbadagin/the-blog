@@ -69,9 +69,9 @@ class NotesController < ApplicationController
 
   def entry_params
     if current_user
-      params.require(:note).permit(:subject, :body, :contact, :homesite, :public)
+      params.permit(:subject, :body, :contact, :homesite, :public)
     else 
-      params.require(:note).permit(:subject, :body, :contact, :homesite)
+      params.permit(:subject, :body, :contact, :homesite)
     end
   end
 
