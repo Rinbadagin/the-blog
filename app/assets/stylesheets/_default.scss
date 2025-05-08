@@ -258,7 +258,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-.guestbook-index {
+.guestbook-index, .note-index {
   width: 100%;
   .new-entry {
     margin: 8px;
@@ -287,6 +287,8 @@ input[type="submit"] {
       padding: 8px;
       margin-bottom: 25px;
       min-width: calc(max(25%, 300px));
+      border-bottom: 1px solid $main_active;
+
       div {
         .destroy-link {
           margin-top: 20px;

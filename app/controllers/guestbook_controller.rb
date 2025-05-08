@@ -2,6 +2,7 @@ class GuestbookController < ApplicationController
   before_action :assert_logged_in, except: %i[index new create]
   @@page_size = 5
   @@captcha_string = "I am human"
+  
   def index
     @current_page = Integer(params[:page] || 0)
     @page_size = @@page_size

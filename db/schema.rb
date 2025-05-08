@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_05_084547) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_07_074030) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,6 +53,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_05_084547) do
     t.string "home_site"
     t.string "contact"
     t.boolean "hide_contact_from_public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
+    t.string "contact"
+    t.string "homesite"
+    t.boolean "public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

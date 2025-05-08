@@ -8,6 +8,7 @@
       <%= raw(generate_tree_from_article_list(Article.order(:title).all, article)) %>
       <div class="border"></div>
       <li><%= link_to "Guestbook", guestbook_index_path %></li>
+      <li><%= link_to "Notes", notes_path %></li>
       <% if request.path == guestbook_index_path %>
         <li><%= link_to "New Entry", new_guestbook_path %></li>
       <% end %>
