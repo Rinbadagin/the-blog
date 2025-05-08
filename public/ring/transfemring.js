@@ -29,7 +29,7 @@
   if (transfemring.index === -1) {
     document.currentScript.outerHTML = `
     <div>
-      <div class="transfem-ring" style="display: flex; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
+      <div class="transfem-ring" style="display: flex; justify-content: center; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
         <a href="${transfemring.root}" target="_top"><img src="${urlWithWidget("banner.png")}"></a>
       </div>
       (this site isn't part of the webring... yet!)
@@ -39,7 +39,7 @@
     let next = "https://" + transfemring.sites[(transfemring.index + 1) % transfemring.sites.length];
     let prev = "https://" + transfemring.sites.at(transfemring.index - 1);
       document.currentScript.outerHTML = `
-      <div class="transfem-ring" style="display: flex; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
+      <div class="transfem-ring" style="display: flex; justify-content: center; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
         <a href="${prev}" target="_top" style="width: 12.295%">
           <img width="100%" src="${urlWithWidget("arrow.png")}" alt="previous site">
         </a>
