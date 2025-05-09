@@ -17,12 +17,12 @@
     <% @entries.each do |entry| %>
       <div class="entry-blurb">
         <div>
-          <div class="author">
+          <h2 class="author">
             <span><%= entry.name %></span>
-          </div>
+          </h2>
           <% if entry.home_site && entry.home_site != ""%>
             <div class="home-site">
-              Home site: <%= entry.home_site %>
+              Home site: <%= link_to entry.home_site, "http://#{entry.home_site}" %>
             </div>
           <% end %>
           <% if (current_user || !entry.hide_contact_from_public) && entry.contact != "" %>

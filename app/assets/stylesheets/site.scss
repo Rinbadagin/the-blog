@@ -196,6 +196,9 @@ header {
 }
 
 .guestbook-index .container .entry-blurb, .note-index .container .entry-blurb {
+  h2 {
+    color: $main_secondary;
+  }
   border-bottom: initial;
   background-color: $secondary_background;
   background-clip: padding-box;

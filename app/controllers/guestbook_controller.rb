@@ -1,6 +1,6 @@
 class GuestbookController < ApplicationController
   before_action :assert_logged_in, except: %i[index new create]
-  @@page_size = 5
+  @@page_size = 15
   @@captcha_string = "I am human"
   
   def index
@@ -21,9 +21,7 @@ class GuestbookController < ApplicationController
     if captcha != @captcha_string 
       @errors = "That 'thing' (you know the one) has to say '#{@captcha_string}'. Exactly."
       render :new, status: :unprocessable_entity
-      return
-    end
-    if @entry.save
+    elsif @entry.save
       redirect_to guestbook_index_path
     else
       render :new, status: :unprocessable_entity

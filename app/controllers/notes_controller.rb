@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   @@page_size = 25
-  @@captcha_string = "Support trans rights"
+  @@captcha_string = "I support trans rights"
 
   def index
     @current_page = Integer(params[:page] || 0)
@@ -31,14 +31,12 @@ class NotesController < ApplicationController
   def create
     @captcha_string = @@captcha_string
     captcha = params[:iamhuman]
-    @entry = Note.new(entry_params)
+    @note = Note.new(entry_params)
     if captcha != @captcha_string && !current_user
-      @errors = "That 'thing' (you know the one) has to say '#{@captcha_string}'. Exactly."
+      @errors = "That input (you know the one) has to say '#{@captcha_string}'. Exactly."
       render :new, status: :unprocessable_entity
-      return
-    end
-    if @entry.save
-      redirect_to notes_path
+    elsif @note.save
+      redirect_to notes_submitted_path
     else
       render :new, status: :unprocessable_entity
     end

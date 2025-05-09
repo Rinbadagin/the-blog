@@ -2,17 +2,17 @@
 <%= form_with model: @entry, url: guestbook_index_path do |f| %>
   <h2>New Guestbook Entry</h2>
   <div>
-    <%= label_tag(:iamhuman, "Are you human? ") %><br>
-    <div>Please type '<%= @captcha_string %>'</div>
-    <%= text_field_tag(:iamhuman) %>
-    <div class="warning"><%= @errors%></div>
-  </div>
-  <div>
     <%= f.label :name, required: true %><br>
     <%= f.text_field :name, autofocus: true, required: true %>
     <% @entry.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
     <% end %>
+  </div>
+  <div>
+    <%= label_tag(:iamhuman, "Are you human? ") %><br>
+    <div>Please type '<%= @captcha_string %>'</div>
+    <%= text_field_tag(:iamhuman) %>
+    <div class="warning"><%= @errors%></div>
   </div>
   <div>
     <%= f.label :body, required: true %><br>
@@ -35,12 +35,11 @@
       <div><%= message %></div>
     <% end %>
   </div>
-  <%= f.label :hide_contact_from_public %> (optional) <br>
-  <%= f.check_box :hide_contact_from_public %>
+  <%= f.label :hide_contact_from_public %> <br>
+  <%= f.check_box :hide_contact_from_public %> (optional)
   <% @entry.errors.full_messages_for(:hide_contact_from_public).each do |message| %>
     <div><%= message %></div>
   <% end %><br>
-  <div class="border"></div>
   <div>
     <%= f.submit "Submit" %>
   </div>
