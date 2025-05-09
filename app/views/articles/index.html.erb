@@ -1,5 +1,6 @@
 <% if @index_article %>
     <% @title = @index_article.title.split("/")[-1] %>
+    <% @description="Article index on fem.nz" %>
     <% @sidebar_article = @index_article %>
     <%= render "post_content", article: @index_article %>
 <% else %>
