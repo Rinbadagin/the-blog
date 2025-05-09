@@ -17,9 +17,6 @@
     <% else%>
       <li><%= link_to "Leave a Note", notes_path, class: "controls" %></li>
     <% end %>
-    <% if request.path == guestbook_index_path %>
-      <li><%= link_to "New Entry", new_guestbook_path, class: "controls" %></li>
-    <% end %>
     <% if current_user %>
       <% if article && article.id %>
         <li> <%= link_to "Edit", edit_article_path(article), class: "controls" %> </li>

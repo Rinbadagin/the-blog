@@ -1,5 +1,6 @@
 <% @title="Guestbook Index" %>
 <div class="guestbook-index">
+  <%= link_to "New Guestbook Entry", new_guestbook_path, class: "controls" %>
   <nav>
     <% if @current_page > 0%>
       <%= link_to "Previous page", guestbook_index_path(page: (@current_page - 1))%>
