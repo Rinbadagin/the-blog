@@ -1,3 +1,4 @@
 <% @title=@article.title.split("/")[-1] %>
+<% @description=strip_tags(@article.body) %>
 <% @sidebar_article=@article %>
 <%= render "post_content", article: @article %>
