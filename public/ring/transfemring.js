@@ -7,6 +7,7 @@
       // sitelist (newest to oldest)
       // strip the protocol off
       sites: [
+          "skyler.lol",
           "klara.nz",
           "fem.nz",
       ],
