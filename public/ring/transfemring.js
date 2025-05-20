@@ -4,12 +4,12 @@
   const VALID_WIDGET_TYPES = ["transgender", "nonbinary"]
 
   let transfemring = {
-      // sitelist (newest to oldest)
+      // sitelist (oldest to newest)
       // strip the protocol off
       sites: [
-          "skyler.lol",
-          "klara.nz",
           "fem.nz",
+          "klara.nz",
+          "skyler.lol",
       ],
       root: "https://fem.nz"
   }
