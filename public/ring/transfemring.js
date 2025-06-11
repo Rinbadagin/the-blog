@@ -10,6 +10,7 @@
           "fem.nz",
           "klara.nz",
           "skyler.lol",
+          "transferns.neocities.org",
       ],
       root: "https://fem.nz"
   }
