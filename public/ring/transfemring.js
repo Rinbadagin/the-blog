@@ -11,6 +11,7 @@
           "klara.nz",
           "skyler.lol",
           "transferns.neocities.org",
+          "cresentri.com"
       ],
       root: "https://fem.nz"
   }
