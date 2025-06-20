@@ -6,9 +6,18 @@ import mammoth from 'mammoth'
 
 window.mammoth = mammoth;
 
+function setHeaderMargin(heightOffset) {
+  document.querySelector('header').style.marginTop = heightOffset + 'px'; 
+}
+
 const resizeObserver = new ResizeObserver(entries => {
     const musicPlayerHeight = entries[0].target.offsetHeight;
-    document.querySelector('header').style.marginTop = musicPlayerHeight + 'px';
+    setHeaderMargin(musicPlayerHeight);
 });
 
 resizeObserver.observe(document.querySelector('.music-player'));
+
+
+window.addEventListener('turbo:render', ()=>{
+  setHeaderMargin(document.querySelector('.music-player').offsetHeight)
+})
