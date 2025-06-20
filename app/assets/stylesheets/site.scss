@@ -15,17 +15,17 @@ $secondary_background: #080408;
 $border-size: 20px;
 
 @use "default" with (
-  $main_highlight: $main_highlight,
-  $main_active: $main_secondary,
-  // $main_secondary: white,
-  $main_accent: $main_accent,
-  $main_highlight_support: $main_highlight_support,
-  // $main_active_interactable: lightblue,
-  $hidden_article: $hidden_article,
-  $warning: $warning,
-  $content_a: $content_a,
-  $global_font: $global_font,
-  $main_background: $main_background
+$main_highlight: $main_highlight,
+$main_active: $main_secondary,
+// $main_secondary: white,
+$main_accent: $main_accent,
+$main_highlight_support: $main_highlight_support,
+// $main_active_interactable: lightblue,
+$hidden_article: $hidden_article,
+$warning: $warning,
+$content_a: $content_a,
+$global_font: $global_font,
+$main_background: $main_background
 );
 
 body {
@@ -92,14 +92,47 @@ header {
   }
 
   & > details:first-child {
+    &[open] .sidebar-indicator {
+      display: none;
+    }
     &:not([open]) {
-      & img, & .sidebar-toggle {
+      position: relative;
+      & .sidebar-toggle {
         width: 36px;
+      }
+      & .sidebar-indicator {
+        position: absolute;
+        display: block;
+        width: initial;
+        height: initial;
+
+        right: -140px;
+        top: -40%;
+        transform-origin: -18px 20px;
+        animation: rotateIndicator 3s infinite;
+
+        @keyframes rotateIndicator {
+          from {
+            transform: rotate(-8deg) scale(1.1);
+          }
+          25% {
+            transform: rotate(0deg) scale(0.9)
+          }
+          50% {
+            transform: rotate(11deg) scale(1.1);
+          }
+          75% {
+            transform: rotate(0deg) scale(0.9)
+          }
+          to {
+            transform: rotate(-8deg) scale(1.1);
+          }
+        }
       }
     }
     & > summary:first-child {
+      display: flex;
       // should be the summary element
-      display: block;
     }
 
   }
@@ -224,14 +257,14 @@ header {
   border-bottom: 1px solid $main_active;
   color: $main_secondary;
   #music-list {
-      border-left: 1px solid $main_active;
+    border-left: 1px solid $main_active;
   }
   input[type="range"] {
-      border: 1px solid $main_secondary;
-      opacity: 1;
-      &::-moz-range-thumb, &::-webkit-slider-thumb {
-          border-width: 2px;
-      }
+    border: 1px solid $main_secondary;
+    opacity: 1;
+    &::-moz-range-thumb, &::-webkit-slider-thumb {
+      border-width: 2px;
+    }
   }
   &__volume {
     order: initial;
