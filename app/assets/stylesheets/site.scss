@@ -28,10 +28,6 @@ $border-size: 20px;
   $main_background: $main_background
 );
 
-* {
-  font-display: fallback;
-}
-
 body {
   min-height: 100vh;
 }
@@ -276,6 +272,7 @@ header {
   font-weight: 400;
   font-optical-sizing: auto;
   size-adjust: 6pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -285,6 +282,7 @@ header {
   font-weight: 400;
   font-optical-sizing: auto;
   size-adjust: 6pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -294,6 +292,7 @@ header {
   font-weight: 300;
   font-optical-sizing: auto;
   size-adjust: 6pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -303,6 +302,7 @@ header {
   font-weight: 500;
   font-optical-sizing: auto;
   size-adjust: 6pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -312,6 +312,7 @@ header {
   font-weight: 700;
   font-optical-sizing: auto;
   size-adjust: 6pt;
+  font-display: fallback;
 }
 
 /* 16pt Optical Size */
@@ -321,6 +322,7 @@ header {
   font-style: normal;
   font-weight: 400;
   font-optical-sizing: auto;
+  font-display: fallback;
   size-adjust: 16pt;
 }
 
@@ -331,6 +333,7 @@ header {
   font-weight: 400;
   font-optical-sizing: auto;
   size-adjust: 16pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -340,6 +343,7 @@ header {
   font-weight: 300;
   font-optical-sizing: auto;
   size-adjust: 16pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -349,6 +353,7 @@ header {
   font-weight: 500;
   font-optical-sizing: auto;
   size-adjust: 16pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -358,6 +363,7 @@ header {
   font-weight: 700;
   font-optical-sizing: auto;
   size-adjust: 16pt;
+  font-display: fallback;
 }
 
 /* 72pt Optical Size */
@@ -368,6 +374,7 @@ header {
   font-weight: 400;
   font-optical-sizing: auto;
   size-adjust: 72pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -377,6 +384,7 @@ header {
   font-weight: 400;
   font-optical-sizing: auto;
   size-adjust: 72pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -386,6 +394,7 @@ header {
   font-weight: 300;
   font-optical-sizing: auto;
   size-adjust: 72pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -395,6 +404,7 @@ header {
   font-weight: 500;
   font-optical-sizing: auto;
   size-adjust: 72pt;
+  font-display: fallback;
 }
 
 @font-face {
@@ -404,4 +414,5 @@ header {
   font-weight: 700;
   font-optical-sizing: auto;
   size-adjust: 72pt;
+  font-display: fallback;
 }
