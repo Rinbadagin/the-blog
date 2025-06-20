@@ -33,7 +33,7 @@
     document.currentScript.outerHTML = `
     <div>
       <div class="transfem-ring" style="display: flex; justify-content: center; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
-        <a href="${transfemring.root}" target="_top"><img width="132" height="48" src="${urlWithWidget("banner.png")}"></a>
+        <a href="${transfemring.root}" target="_top"><img width="168" height="61" src="${urlWithWidget("banner.png")}"></a>
       </div>
       (this site isn't part of the webring... yet!)
     </div>
@@ -44,13 +44,13 @@
       document.currentScript.outerHTML = `
       <div class="transfem-ring" style="display: flex; justify-content: center; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
         <a href="${prev}" target="_top" style="width: 12.295%">
-          <img width="43" height="46" src="${urlWithWidget("arrow.png")}" alt="previous site">
+          <img width="30" height="32" src="${urlWithWidget("arrow.png")}" alt="previous site">
         </a>
         <a href="${transfemring.root}" target="_top" style="width: 68.852%">
-          <img width="132" height="48" src="${urlWithWidget("banner.png")}" alt="transfem webring">
+          <img width="168" height="61" src="${urlWithWidget("banner.png")}" alt="transfem webring">
         </a>
         <a href="${next}" target="_top" style="width: 12.295%">
-          <img width="43" height="46px" src="${urlWithWidget("arrow.png")}" alt="next site" style="transform: scaleX(-1);">
+          <img width="30" height="32" src="${urlWithWidget("arrow.png")}" alt="next site" style="transform: scaleX(-1);">
         </a>
       </div>
     `;
