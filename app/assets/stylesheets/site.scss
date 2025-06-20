@@ -28,9 +28,12 @@ $border-size: 20px;
   $main_background: $main_background
 );
 
+* {
+  font-display: fallback;
+}
+
 body {
   min-height: 100vh;
-  font-display: fallback;
 }
 
 h1,h2,h3,h4,h5,h6 {
