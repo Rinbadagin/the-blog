@@ -42,7 +42,7 @@ $main_music_highlight: black !default;
 }
 body {
   color: $main_highlight;
-  background-color: $main_background;
+  background: $main_background;
 }
 img {
   image-rendering: pixelated;
