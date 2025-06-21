@@ -13,6 +13,9 @@
       <%= render 'shared/music_player' %>
       <%= render "articles/header"%>
       <div id="page">
+        <%= image_tag "left-cloud.png", id: "left-cloud" %>
+        <%= image_tag "right-cloud.png", id: "right-cloud" %>
+        <%= image_tag "thebream-cropped.png", id: "bream" %>
         <%= render "articles/sidebar", article: @sidebar_article %>
         <%= yield %>
       </div>
