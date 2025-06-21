@@ -28,6 +28,10 @@ $global_font: $global_font,
 $main_background: $main_background
 );
 
+* {
+  image-rendering: pixelated;
+}
+
 body {
   min-height: 100vh;
 }
