@@ -15,17 +15,17 @@ $secondary_background: #C5B39A;
 $border-size: 20px;
 
 @use "default" with (
-  $main_highlight: $main_highlight,
-  $main_active: $main_active,
-  // $main_secondary: white,
-  $main_accent: $main_accent,
-  $main_highlight_support: $main_highlight_support,
-  // $main_active_interactable: lightblue,
-  $hidden_article: $hidden_article,
-  $warning: $warning,
-  $content_a: $content_a,
-  $global_font: $global_font,
-  $main_background: $main_background
+$main_highlight: $main_highlight,
+$main_active: $main_active,
+// $main_secondary: white,
+$main_accent: $main_accent,
+$main_highlight_support: $main_highlight_support,
+// $main_active_interactable: lightblue,
+$hidden_article: $hidden_article,
+$warning: $warning,
+$content_a: $content_a,
+$global_font: $global_font,
+$main_background: $main_background
 );
 
 body {
@@ -101,7 +101,7 @@ header {
   & > details:first-child {
     &:not([open]) {
       & img, & .sidebar-toggle {
-        width: 36px;
+        // width: 36px; we don't need this >:(
       }
     }
     & > summary:first-child {
@@ -256,14 +256,14 @@ header {
   border-bottom: 1px solid $main_active;
   color: $main_secondary;
   #music-list {
-      border-left: 1px solid $main_active;
+    border-left: 1px solid $main_active;
   }
   input[type="range"] {
-      border: 1px solid $main_secondary;
-      opacity: 1;
-      &::-moz-range-thumb, &::-webkit-slider-thumb {
-          border-width: 2px;
-      }
+    border: 1px solid $main_secondary;
+    opacity: 1;
+    &::-moz-range-thumb, &::-webkit-slider-thumb {
+      border-width: 2px;
+    }
   }
   &__volume {
     order: initial;
@@ -460,4 +460,12 @@ header {
 
 #sidebar, #content, .entry-blurb, .upload-index {
   backdrop-filter: brightness(400%) opacity(70%) brightness(80%) sepia(50%);
+}
+
+.sidebar-toggle {
+  border-image-slice: 10 7 7 7;
+  border-image-width: 5px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: stretch stretch; 
+  border-image-source: url('toggle-border.webp');
 }
