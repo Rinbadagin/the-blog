@@ -197,8 +197,6 @@ header {
   column-count: 2;
   transform: rotate(0.3deg);
 
-  background-color: rgba(255, 255, 255, 0.6);
-
   .datetime-footer {
     vertical-align: bottom;
     display: inline;
@@ -240,7 +238,6 @@ header {
 }
 
 .entry-blurb {
-  background-color: $secondary_background;
   background-clip: padding-box;
   border-style: solid;
   border-width: $border-size;
@@ -459,4 +456,8 @@ header {
   opacity: 1;
   height: 30%;
   min-height:200px;
+}
+
+#sidebar, #content, .entry-blurb, .upload-index {
+  backdrop-filter: brightness(400%) opacity(70%) brightness(80%) sepia(50%);
 }
