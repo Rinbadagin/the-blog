@@ -2,10 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-import mammoth from 'mammoth'
-
-window.mammoth = mammoth;
-
 function setHeaderMargin(heightOffset) {
   document.querySelector('header').style.marginTop = heightOffset + 'px'; 
 }
