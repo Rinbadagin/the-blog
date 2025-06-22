@@ -4,11 +4,18 @@ class ArticlesController < ApplicationController
 
   def index
     @index_article = Article.find(1)
+
+    if request.content_type == "application/json"
+      render json: Article.all.where(visibility: true)
+    end
   end
 
   def show
     @article = Article.find(params[:id])
     assert_logged_in if !@article.visibility
+    if request.content_type == "application/json"
+      render json: @article
+    end
   end
 
   def new
