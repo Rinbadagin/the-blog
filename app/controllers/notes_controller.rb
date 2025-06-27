@@ -8,7 +8,7 @@ class NotesController < ApplicationController
     if !current_user
       redirect_to new_note_path
     else 
-      @notes = Note.all.limit(@@page_size).offset(@current_page * @@page_size ).all
+      @notes = Note.all.limit(@@page_size).offset(@current_page * @@page_size ).all.sort_by :created_at
     end
   end
 
