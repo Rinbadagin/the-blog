@@ -20,5 +20,9 @@
   <% end %>
   <%= form.label :body %><br>
   <%= form.text_area :body, class: "article-body", id: "article-body-input", :required => true %>
+  <div>
+    <%= form.label :attachments, "Upload (for banner 👉👈)" %><br>
+    <%= form.file_field :attachments, direct_upload: true %>
+  </div>
   <%= form.submit %>
 <% end %>
