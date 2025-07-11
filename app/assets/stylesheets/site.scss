@@ -430,7 +430,7 @@ header {
   }
 }
 
-#left-cloud, #right-cloud, #bream {
+#left-cloud, #right-cloud, #bream, #right-flowers {
   position: absolute;
   pointer-events: none;
   z-index: -1;
@@ -450,6 +450,13 @@ header {
   bottom: 120px;
   opacity: 0.3;
   height: 60%;
+}
+
+#right-flowers {
+  right: 0;
+  top: 40px;
+  opacity: 1;
+  width: 256px;
 }
 
 #bream {
