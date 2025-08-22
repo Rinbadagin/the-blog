@@ -14,6 +14,7 @@
           "cresentri.com",
           "iseel.neocities.org",
           "vivslakes.moe",
+          "fionaruthbo.neocities.org",
       ],
       root: "https://fem.nz"
   }
