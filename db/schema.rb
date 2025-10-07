@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_07_074030) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_24_065130) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,6 +77,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_074030) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "webring_nodes", force: :cascade do |t|
+    t.text "description"
+    t.text "site_link"
+    t.text "author"
+    t.boolean "in_the_ring"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

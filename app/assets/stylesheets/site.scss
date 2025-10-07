@@ -28,6 +28,8 @@ $global_font: $global_font,
 $main_background: $main_background
 );
 
+@use "tables";
+
 * {
   image-rendering: pixelated;
 }

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :uploads, param: :title
   resources :guestbook
+  resources :webring_node
   get "/notes/submitted" => "notes#submitted"
   resources :notes
   root "articles#index"
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create"
   get "/logout" => "sessions#destroy"
   get "music_player", to: "music_player#index"
+  get "/ring/transfemring.js" => "webring_node#transfemring"
 end

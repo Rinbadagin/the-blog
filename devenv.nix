@@ -1,11 +1,13 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, inputs, devenv-zsh, ... }:
 
 {
+  imports = [ devenv-zsh.plugin ];
+  zsh.enable= true;
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.libyaml ];
+  packages = [ pkgs.git pkgs.libyaml pkgs.rubyPackages.ruby-vips ];
   cachix.enable = false;
   # https://devenv.sh/languages/
   # languages.rust.enable = true;

@@ -1,25 +1,17 @@
 // based again off https://transring.neocities.org/ring.js :)
 // which is based off https://juneish.neocities.org/resources/webstring/
+
 {
   const VALID_WIDGET_TYPES = ["transgender", "nonbinary"]
 
   let transfemring = {
       // sitelist (oldest to newest)
       // strip the protocol off
-      sites: [
-          "fem.nz",
-          "klara.nz",
-          "skyler.lol",
-          "transferns.neocities.org",
-          "cresentri.com",
-          "iseel.neocities.org",
-          "vivslakes.moe",
-          "fionaruthbo.neocities.org",
-      ],
+      sites: <%= raw(WebringNode.all.to_json) %>,
       root: "https://fem.nz"
   }
-
-  transfemring.index = location.href.startsWith("file://") ? 0 : transfemring.sites.findIndex(url => location.href.startsWith("https://" + url));
+  console.log(transfemring)
+  transfemring.index = location.href.startsWith("file://") ? 0 : transfemring.sites.findIndex((entry) => location.href.includes("://" + entry.site_link));
   let widget = document.currentScript.dataset.widget ?? "transgender";
 
   function urlWithWidget(path) {
@@ -42,8 +34,28 @@
     </div>
     `;
   } else {
-    let next = "https://" + transfemring.sites[(transfemring.index + 1) % transfemring.sites.length];
-    let prev = "https://" + transfemring.sites.at(transfemring.index - 1);
+    function nextActive() {
+      let currentIndex = transfemring.index + 1
+      while (!location.href.includes(transfemring.sites[currentIndex % transfemring.sites.length].site_link)) {
+        if (transfemring.sites[currentIndex % transfemring.sites.length].in_the_ring) {
+          return transfemring.sites[currentIndex % transfemring.sites.length]
+        }
+        currentIndex++
+      }
+      return transfemring.sites[currentIndex % transfemring.sites.length]
+    }
+    function previousActive() {
+      let currentIndex = transfemring.index - 1
+      while (!location.href.includes(transfemring.sites.at(currentIndex).site_link)) {
+        if (transfemring.sites.at(currentIndex).in_the_ring) {
+          return transfemring.sites.at(currentIndex)
+        }
+        currentIndex--
+      }
+      return transfemring.sites[currentIndex % transfemring.sites.length]
+    }
+    let next = "https://" + nextActive().site_link
+    let prev = "https://" + previousActive().site_link;
       document.currentScript.outerHTML = `
       <div class="transfem-ring" style="display: flex; justify-content: center; align-items: center; gap: 3.278%; max-width: 244px; image-rendering: pixelated">
         <a href="${prev}" target="_top" style="width: 12.295%">

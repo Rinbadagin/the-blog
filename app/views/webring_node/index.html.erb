@@ -1,0 +1,29 @@
+<% @title="Webring Entries" %>
+<% @description="Transfem webring index" %>
+
+<article id="content">
+  <table class="webring-index">
+    <tr>
+      <th>Banner</th>
+      <th>Site</th>
+      <th>Author</th>
+      <th>Description</th>
+      <th>Active</th>
+    </tr>
+    <% @nodes.each do |node| %>
+      <tr>
+        <td><%= image_tag url_for(node.banner.variant(resize_to_limit: [176, 62])) %></td>
+        <td>
+          <% if current_user %>
+            <%= link_to node.site_link, edit_webring_node_path(node) %>
+          <% else %>
+            <%= link_to node.site_link, "https://#{node.site_link}" %>
+          <% end %>
+        </td>
+        <td><%= node.author %></td>
+        <td><pre><%= node.description %></pre></td>
+          <td><%= "Yes" if node.in_the_ring %></td>
+      </tr>
+    <% end %>
+  </table>
+</article>

@@ -1,0 +1,23 @@
+<% @title="Edit Webring Entry" %>
+<% @description="Edit webring entry" %>
+<%= form_with model: @webring_node, url: webring_node_path(@webring_node) do |f| %>
+  <h2>New Webring Entry</h2>
+  <div>
+    <%= f.label :site_link, required: true %><br>
+    <%= f.text_field :site_link, autofocus: true, required: true %><br>
+    <%= f.label :description, required: true %><br>
+    <%= f.text_field :description, required: true %><br>
+    <%= f.label :author %><br>
+    <%= f.text_field :author %><br>
+    <%= f.label :banner %><br>
+    <%= f.file_field :banner, direct_upload: true %><br>
+    <%= f.label :notes %><br>
+    <%= f.text_field :notes %><br>
+    <%= f.label :in_the_ring %><br>
+    <%= f.check_box :in_the_ring %></br>
+  </div>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+

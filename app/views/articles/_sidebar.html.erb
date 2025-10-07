@@ -12,6 +12,7 @@
     <%= raw(generate_tree_from_article_list(Article.order(:title).all, article)) %>
     <%# <li class="border"></li> %>
     <%= image_tag "ladybird_computer_02_144x.png", alt: "mini-computer" %>
+    <li><%= link_to "Webring Entries", webring_node_index_path, class: "controls" %></li>
     <li><%= link_to "Guestbook", guestbook_index_path, class: "controls" %></li>
     <% if current_user %>
       <li><%= link_to "Notes", notes_path, class: "controls" %></li>
@@ -28,6 +29,7 @@
       <% end %>
       <li><%= link_to "New Article", new_article_path, class: "controls" %></li>
       <li><%= link_to "New Article from Doc", articles_get_html_from_docx_path, class: "controls" %></li>
+      <li><%= link_to "New Node", new_webring_node_path, class: "controls" %> </li>
       <li><%= link_to "Uploads", uploads_path, class: "controls" %></li>
       <% if request.path == uploads_path %>
         <li><%= link_to "New Upload", new_upload_path, class: "controls" %></li>
