@@ -430,7 +430,7 @@ header {
 
 @media screen and (min-width: 1500px) {
   #content {
-    column-count: max(var(--max-column-count), 4);
+    column-count: min(var(--max-column-count), 4);
   }
 }
 
