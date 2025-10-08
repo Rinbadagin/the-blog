@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get "/logout" => "sessions#destroy"
   get "music_player", to: "music_player#index"
   get "articles_json" => "articles#index_json"
+  get "uploads/view/:title" => "uploads#view"
 end

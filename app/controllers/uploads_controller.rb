@@ -27,6 +27,10 @@ class UploadsController < ApplicationController
     redirect_to upload_path, status: :see_other
   end
 
+  def view
+    redirect_to url_for(Upload.find_by(title: params[:title]).content)
+  end
+
   private 
     def upload_params
       params.require(:upload).permit(:title, :description, :content)
