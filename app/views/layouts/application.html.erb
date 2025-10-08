@@ -15,13 +15,17 @@
         window.articles = JSON.parse(await response.text())
       }
 
-      function getContentFromString(input) {
+      function getContentFromString(input, removeRaw) {
         let content = ""
         let mode = ""
 
         let uploadMatches = Array.from(input.matchAll(/src\=.?\!\[(.*)\]/g))
         for (let j of uploadMatches) {
           input = input.replace(new RegExp(`\\!\\[${j[1]}\\]`, "g"), `/uploads/view/${j[1]}`)
+        }
+
+        if (removeRaw) {
+          input = input.replaceAll(/```[^]*```/mg, "")
         }
 
         for (let i of input.split("\n")) {
