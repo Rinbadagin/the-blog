@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_sidebar_data
-  before_action :assert_logged_in, except: %i[index show]
+  before_action :assert_logged_in, except: %i[index show index_json]
 
   def index
     @index_article = Article.find(1)
