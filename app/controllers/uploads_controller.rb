@@ -1,6 +1,6 @@
 class UploadsController < ApplicationController
   include ActiveStorage::SetCurrent
-  before_action :assert_logged_in
+  before_action :assert_logged_in, except: %i[view]
 
   def index
     @uploads = Upload.all
