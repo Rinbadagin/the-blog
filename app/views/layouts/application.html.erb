@@ -19,6 +19,11 @@
         let content = ""
         let mode = ""
 
+        let uploadMatches = Array.from(input.matchAll(/src\=.?\!\[(.*)\]/g))
+        for (let j of uploadMatches) {
+          input = input.replace(new RegExp(`\\!\\[${j[1]}\\]`, "g"), `/uploads/view/${j[1]}`)
+        }
+
         for (let i of input.split("\n")) {
           if (i.startsWith("```")) {
             i = i.slice(3)
