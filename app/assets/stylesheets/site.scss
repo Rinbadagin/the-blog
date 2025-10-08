@@ -181,6 +181,9 @@ header {
 }
 
 #content {
+  --max-column-count: 4;
+  --default-column-count: 2;
+  --min-column-count: 1;
   margin: 0px auto;
   padding: 8px;
   width: 100%;
@@ -195,7 +198,7 @@ header {
   background-clip: padding-box;
 
   image-rendering: pixelated;
-  column-count: 2;
+  column-count: var(--default-column-count);
   transform: rotate(0.3deg);
 
   .datetime-footer {
@@ -411,7 +414,7 @@ header {
 
 @media screen and (max-width: 700px) {
   #content {
-    column-count: 1;
+    column-count: var(--min-column-count);
     transform: initial;
   }
   #sidebar {
@@ -421,13 +424,13 @@ header {
 
 @media screen and (min-width: 1000px) {
   #content {
-    column-count: 3;
+    column-count: max(calc(var(--max-column-count) - 1), var(--min-column-count));
   }
 }
 
 @media screen and (min-width: 1500px) {
   #content {
-    column-count: 4;
+    column-count: max(var(--max-column-count), 4);
   }
 }
 
