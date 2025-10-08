@@ -4,10 +4,10 @@ class ArticlesController < ApplicationController
 
   def index
     @index_article = Article.find(1)
+  end
 
-    if request.content_type == "application/json"
-      render json: Article.all.where(visibility: true)
-    end
+  def index_json
+    render json: Article.all.where(visibility: true)
   end
 
   def show

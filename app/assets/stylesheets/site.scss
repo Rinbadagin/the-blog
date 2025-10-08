@@ -90,7 +90,9 @@ header {
   border: none;
   margin: 8px;
   border-right: 1px solid black;
+  border-bottom: 1px solid white;
   transform: rotate(-0.5deg);
+  height: fit-content;
 
   image-rendering: pixelated;
 
@@ -175,8 +177,7 @@ header {
 
 #content-form {
   margin: 0px auto;
-  max-width: 900px;
-  width: 100%;
+  width: 90%;
 }
 
 #content {
