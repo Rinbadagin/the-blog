@@ -70,3 +70,7 @@ end
 gem 'bcrypt', '~> 3.1.7'
 
 gem "dartsass-rails", "~> 0.5.0"
+
+gem "httparty", "~> 0.23.2"
+
+gem "whenever", "~> 1.0"
