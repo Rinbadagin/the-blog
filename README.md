@@ -8,7 +8,7 @@ Remove any <> characters in commands unless directed otherwise.
 Content after `#` in shell commands doesn't need to be input if you're typing it out. It won't do anything, so feel free to include if you're copy/pasting.
 
 ### Before you start:
-You need a running VM/instance/server/whatever on a recent ubuntu version (24.04 LTS recommended) that you can run shell commands against as root. It should have A DNS records pointing www.<YOUR DOMAIN> and <YOUR DOMAIN> to an assigned ipv4 address.
+You need a running VM/instance/server/whatever on a recent ubuntu version (24.04 LTS recommended) that you can run shell commands against as root. It should have A DNS records pointing `www.<YOUR DOMAIN>` and `<YOUR DOMAIN>` to an assigned ipv4 address.
 Choose a branch to base your instance and or any future changes to this code on. `main` is the least maintained, `elizas-blog`, `fem-nz-blog`, and `klara-nz-blog` all have more recent changes. They differ in cosmetics and some internal things (e.g. fem-nz-blog has webring handling code). The branch you choose will be used in the initial setup of the server.
 
 From a suitably permissioned shell run the following commands one-by-one (line separated)
@@ -45,7 +45,7 @@ The site is not designed with multiple users in mind and may fail or have unexpe
 You should also edit the file in `$BLOG_DIRECTORY/prod_blog_startmux.sh` to set your `$BLOG_DIRECTORY` variable appropriately (where it says `export BLOG_DIRECTORY="update this"`), using your editor of choice (nano should already be installed, you can run `nano $BLOG_DIRECTORY/prod_blog_startmux.sh` and use the keybinds at the bottom of the screen \[^ means the control key, e.g. ^X exit means pressing `control + x` will exit])
 
 At this point, run `crontab -e`.
-Add this line at the end (remember to update the <YOUR USER> sections):
+Add this line at the end (remember to update the `<YOUR USER>` sections):
 `@reboot sleep 30 && /home/<YOUR USER>/prod_blog_startmux.sh 2>&1 /home/<YOUR USER>/prod_blog_startup.log`
 And save the crontab. On every reboot, `prod_blog_startmux.sh` will run as your after a 30 second delay, logging output to `~/prod_blog_startup.log`.
 
