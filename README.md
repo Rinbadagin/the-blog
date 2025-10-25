@@ -16,7 +16,7 @@ From a suitably permissioned shell run the following commands one-by-one (line s
 sudo apt update && sudo apt upgrade
 sudo apt install git tmux cron
 ```
-Follow the instructions at [https://github.com/rbenv/rbenv?tab=readme-ov-file#basic-git-checkout](rbenv git install)
+Follow the instructions at https://github.com/rbenv/rbenv?tab=readme-ov-file#basic-git-checkout
 Open a new shell or run `source ~/.zshrc` // `source ~/.bashrc` (this should set up rbenv in the local shell, to test run `rbenv local` - the command should be successful)
 Afterwards, clone your fork of this repository (or this repository) via git into a directory I will now refer to as `$BLOG_DIRECTORY`. 
 <img width="838" height="728" alt="image" src="https://github.com/user-attachments/assets/ee409e84-b572-4da0-b1e8-2729e5019263" />
