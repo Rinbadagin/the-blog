@@ -3,6 +3,7 @@
 
 <article id="content">
   <table class="webring-index">
+    <thead>
     <tr>
       <th>Banner</th>
       <th>Site</th>
@@ -10,11 +11,13 @@
       <th>Description</th>
       <th>Active</th>
     </tr>
+    <thead>
+    <tbody>
     <% @nodes.each do |node| %>
       <tr>
         <td>
         <% if node.banner.attached? %>
-          <%= image_tag url_for(node.banner.variant(resize_to_limit: [176, 62])) %></td>
+          <%= image_tag url_for(node.banner) %></td>
         <% else %>
           :(
         <% end %>
@@ -30,5 +33,6 @@
           <td><%= "Yes" if node.in_the_ring %></td>
       </tr>
     <% end %>
+    </tbody>
   </table>
 </article>

@@ -2,7 +2,8 @@
   border: 1px solid white;
   border-collapse: collapse;
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
+  overflow-x: auto;
 
   th {
     text-align: center;
@@ -19,5 +20,9 @@
     &:last-of-type {
       border: none;
     }
+  }
+
+  #content:has(&) {
+    overflow-x: auto;
   }
 }
